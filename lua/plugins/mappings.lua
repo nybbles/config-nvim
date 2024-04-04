@@ -44,6 +44,10 @@ return {
               s = { "<cmd>TermSelect<cr>", "Select terminal" },
               r = { "<cmd>ToggleTermSetName<cr>", "Rename terminal" },
             },
+
+            ["g"] = {
+              L = { "<cmd>GithubLink<cr>", "Copy Github link to clipboard" },
+            },
           },
           t = {
             -- setting a mapping to false will disable it
