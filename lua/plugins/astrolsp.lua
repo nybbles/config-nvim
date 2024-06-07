@@ -46,6 +46,72 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      ruff_lsp = {
+        init_options = {
+          settings = {
+            args = {},
+          },
+        },
+        on_attach = function(client, bufnr)
+          if client.name == "ruff_lsp" then
+            -- Disable hover in favor of pylsp
+            client.server_capabilities.hoverProvider = false
+          end
+        end,
+      },
+      pyright = {
+        settings = {
+          pyright = {},
+          python = {
+            analysis = {
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        },
+      },
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              jedi_completion = {
+                enabled = true,
+                fuzzy = true,
+                eager = true,
+                include_class_objects = true,
+                include_params = true,
+                include_function_objects = true,
+              },
+              jedi_hover = { enabled = true },
+              jedi_references = { enabled = true },
+              jedi_definition = { enabled = true },
+              jedi_symbols = { enabled = true },
+              jedi_signature_help = { enabled = true },
+              rope_autoimport = {
+                enabled = true,
+              },
+              pycodestyle = {
+                enabled = false,
+              },
+              mccabe = {
+                enabled = false,
+              },
+              pyflakes = {
+                enabled = false,
+              },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              ruff = {
+                enabled = true,
+                formatEnabled = true,
+                targetVersion = "py311",
+              },
+            },
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -96,6 +162,7 @@ return {
         --   desc = "Toggle LSP semantic highlight (buffer)",
         --   cond = function(client) return client.server_capabilities.semanticTokensProvider and vim.lsp.semantic_tokens end,
         -- },
+        ["<Leader>lG"] = false,
       },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function

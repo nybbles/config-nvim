@@ -10,9 +10,10 @@ return {
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.markdown" },
+  -- { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
+  -- { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   { import = "astrocommunity.editing-support.vim-move" },

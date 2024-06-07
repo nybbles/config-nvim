@@ -3,5 +3,19 @@ return {
   lazy = false,
   name = "catppuccin",
   priority = 1000,
-  config = function() vim.cmd.colorscheme "catppuccin-mocha" end,
+  opts = {
+    flavour = "auto",
+    background = {
+      light = "latte",
+      dark = "mocha",
+    },
+    integrations = {
+      aerial = true,
+      neotree = true,
+      navic = {
+        enabled = true,
+      },
+      which_key = true,
+    },
+  },
 }

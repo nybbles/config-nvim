@@ -4,6 +4,8 @@ return {
     ---@type AstroCoreOpts
     opts = function(_, default_opts)
       default_opts.mappings.n["<Leader>w"] = nil
+      default_opts.mappings.n["<Leader>lG"] = false
+
       local opts = {
         mappings = {
           -- first key is the mode
@@ -33,21 +35,20 @@ return {
               ["="] = { "<cmd>WindowsEqualize<cr>", "Equalize windows" },
             },
 
-            ["<Leader>lo"] = {
-              name = "Symbols outline",
-              o = { "<cmd>Outline<cr>", "Toggle symbols outline" },
-              f = { "<cmd>OutlineFocus<cr>", "Toggle symbols outline focus" },
-            },
-
             ["<Leader>t"] = {
               name = "Terminals",
               s = { "<cmd>TermSelect<cr>", "Select terminal" },
               r = { "<cmd>ToggleTermSetName<cr>", "Rename terminal" },
             },
 
+            ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
+            ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
+
             ["g"] = {
               L = { "<cmd>GithubLink<cr>", "Copy Github link to clipboard" },
             },
+
+            ["<Leader>O"] = { "<cmd>Octo<cr>", desc = "Octo" },
           },
           t = {
             -- setting a mapping to false will disable it
