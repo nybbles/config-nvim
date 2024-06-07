@@ -14,13 +14,13 @@ return {
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
       -- Set a formatter
-      null_ls.builtins.formatting.black,
-      null_ls.builtins.formatting.isort.with {
-        extra_args = { "--black", "--filter-files" },
-      },
+      -- null_ls.builtins.formatting.black,
+      -- null_ls.builtins.formatting.isort.with {
+      --   extra_args = { "--black", "--filter-files" },
+      -- },
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.yamllint,
-      null_ls.builtins.diagnostics.pylint,
+      -- null_ls.builtins.diagnostics.pylint,
       null_ls.builtins.code_actions.refactoring,
       null_ls.builtins.completion.luasnip,
     }

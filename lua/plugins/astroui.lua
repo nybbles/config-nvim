@@ -11,9 +11,9 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    colorscheme = "oxocarbon",
-    -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
+    colorscheme = "catppuccin",
     highlights = {
+      -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
       init = { -- this table overrides highlights in all themes
         -- Normal = { bg = "#000000" },
       },
@@ -35,5 +35,8 @@ return {
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
     },
+  },
+  dependencies = {
+    "nvim-focus/focus.nvim",
   },
 }
