@@ -18,4 +18,5 @@ return {
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   { import = "astrocommunity.editing-support.vim-move" },
   { import = "astrocommunity.recipes.neovide" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
 }

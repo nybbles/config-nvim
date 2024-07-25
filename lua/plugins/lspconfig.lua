@@ -19,10 +19,6 @@ return {
           scrolloff = 0,
         },
       },
-      config = function(plugin, opts)
-        local navbuddy = require "nvim-navbuddy"
-        navbuddy.setup(opts)
-      end,
     },
   },
 }

@@ -1,8 +1,8 @@
 return {
   "nvim-focus/focus.nvim",
-  enabled = true,
+  enabled = false,
   config = function(plugin, opts)
-    local ignore_filetypes = { "neo-tree" }
+    local ignore_filetypes = { "neo-tree", "trouble" }
     local ignore_buftypes = { "nofile", "prompt", "popup" }
 
     require("focus").setup(opts)

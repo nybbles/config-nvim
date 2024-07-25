@@ -12,6 +12,7 @@ return {
       "vim",
       "python",
       "rust",
+      "javascript",
       -- add more arguments for adding more treesitter parsers
     })
     opts.highlight = {
