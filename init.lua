@@ -17,3 +17,6 @@ end
 
 require "lazy_setup"
 require "polish"
+
+vim.cmd "set autoread"
+vim.cmd "au CursorHold * checktime"
