@@ -10,6 +10,16 @@ require("lazy").setup({
       pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
     },
   },
+  -- Add SmiteshP/nvim-navbuddy explicitly to ensure it's installed
+  { 
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false, -- Load immediately
+  },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {
