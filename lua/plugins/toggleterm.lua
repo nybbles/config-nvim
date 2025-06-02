@@ -1,15 +1,22 @@
 return {
   "akinsho/toggleterm.nvim",
   cmd = { "ToggleTerm" },
-  keys = { [[<c-\>]] },
+  keys = { [[<leader>tt]] },
   opts = {
-    open_mapping = [[<c-\>]],
+    open_mapping = [[<leader>tt]],
     direction = "vertical",
+    shell = vim.o.shell,
+    -- Performance optimizations
+    shade_terminals = false,
+    highlights = {
+      Normal = { link = "Normal" },
+      NormalFloat = { link = "NormalFloat" },
+    },
     size = function(term)
       if term.direction == "horizontal" then
         return 15
       elseif term.direction == "vertical" then
-        return vim.o.columns * 0.4
+        return vim.o.columns * 0.25
       end
     end,
     winbar = {

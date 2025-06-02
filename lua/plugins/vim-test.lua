@@ -4,13 +4,12 @@ return {
     "preservim/vimux",
   },
   config = function()
-    -- Reorganize vim-test mappings under <leader>t namespace to avoid conflicts
-    -- with other plugins (<leader>a for Aerial, <leader>l for LSP)
-    vim.keymap.set("n", "<leader>tn", ":TestNearest<CR>", { desc = "Test Nearest" })
-    vim.keymap.set("n", "<leader>tf", ":TestFile<CR>", { desc = "Test File" })
-    vim.keymap.set("n", "<leader>ta", ":TestSuite<CR>", { desc = "Test Suite" })
-    vim.keymap.set("n", "<leader>tl", ":TestLast<CR>", { desc = "Test Last" })
-    vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>", { desc = "Test Visit" })
+    -- Test mappings moved to avoid conflict with terminal mappings
+    vim.keymap.set("n", "<leader>Tn", ":TestNearest<CR>", { desc = "Test Nearest" })
+    vim.keymap.set("n", "<leader>Tf", ":TestFile<CR>", { desc = "Test File" })
+    vim.keymap.set("n", "<leader>Ta", ":TestSuite<CR>", { desc = "Test Suite" })
+    vim.keymap.set("n", "<leader>Tl", ":TestLast<CR>", { desc = "Test Last" })
+    vim.keymap.set("n", "<leader>Tv", ":TestVisit<CR>", { desc = "Test Visit" })
     vim.cmd "let test#strategy = 'neovim'"
   end,
 }
