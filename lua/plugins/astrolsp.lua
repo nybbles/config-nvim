@@ -57,6 +57,9 @@ return {
             -- Disable hover in favor of pylsp
             client.server_capabilities.hoverProvider = false
           end
+
+          local navbuddy = require "nvim-navbuddy"
+          navbuddy.attach(client, bufnr)
         end,
       },
       pyright = {
@@ -108,6 +111,17 @@ return {
                 formatEnabled = true,
                 targetVersion = "py311",
               },
+            },
+          },
+        },
+      },
+      ["rust-analyzer"] = {
+        procMacro = {
+          ignored = {
+            leptos_macro = {
+              -- optional: --
+              -- "component",
+              "server",
             },
           },
         },
