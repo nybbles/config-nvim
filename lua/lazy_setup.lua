@@ -11,6 +11,16 @@ require("lazy").setup({
       autoread = true,
     },
   },
+  -- Add SmiteshP/nvim-navbuddy explicitly to ensure it's installed
+  { 
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false, -- Load immediately
+  },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {

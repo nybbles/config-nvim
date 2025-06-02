@@ -4,11 +4,12 @@ return {
     "preservim/vimux",
   },
   config = function()
-    vim.keymap.set("n", "<leader>t", ":TestNearest<CR>", {})
-    vim.keymap.set("n", "<leader>T", ":TestFile<CR>", {})
-    vim.keymap.set("n", "<leader>a", ":TestSuite<CR>", {})
-    vim.keymap.set("n", "<leader>l", ":TestLast<CR>", {})
-    vim.keymap.set("n", "<leader>g", ":TestVisit<CR>", {})
+    -- Test mappings moved to avoid conflict with terminal mappings
+    vim.keymap.set("n", "<leader>Tn", ":TestNearest<CR>", { desc = "Test Nearest" })
+    vim.keymap.set("n", "<leader>Tf", ":TestFile<CR>", { desc = "Test File" })
+    vim.keymap.set("n", "<leader>Ta", ":TestSuite<CR>", { desc = "Test Suite" })
+    vim.keymap.set("n", "<leader>Tl", ":TestLast<CR>", { desc = "Test Last" })
+    vim.keymap.set("n", "<leader>Tv", ":TestVisit<CR>", { desc = "Test Visit" })
     vim.cmd "let test#strategy = 'neovim'"
   end,
 }

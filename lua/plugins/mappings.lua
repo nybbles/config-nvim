@@ -34,8 +34,12 @@ return {
             ["<Leader>w="] = { "<cmd>WindowsEqualize<cr>", desc = "Equalize windows" },
 
             ["<Leader>t"] = { name = "Terminals" },
-            ["<Leader>ts"] = { "<cmd>TermSelect<cr>", desc = "Select terminal" },
+            ["<Leader>ts"] = { function() require("custom.terminal-picker").terminal_picker() end, desc = "Search/select terminal" },
+            ["<Leader>tf"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "float" }) end, desc = "Float terminal" },
+            ["<Leader>th"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "horizontal" }) end, desc = "Horizontal terminal" },
+            ["<Leader>tv"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "vertical" }) end, desc = "Vertical terminal" },
             ["<Leader>tr"] = { "<cmd>ToggleTermSetName<cr>", desc = "Rename terminal" },
+            ["<Leader>tg"] = { function() require("custom.terminal-picker").terminal_picker({ cmd = "lazygit", direction = "float" }) end, desc = "Lazygit terminal" },
 
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
             ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
