@@ -61,7 +61,43 @@ return {
 
             -- File operations
             ["<Leader>f"] = { name = "Find" },
-            ["<Leader>fb"] = { "<cmd>Telescope file_browser<cr>", desc = "File browser" },
+            ["<Leader>fb"] = { 
+              function()
+                local path = nil
+                
+                -- Check if we're in neo-tree
+                if vim.bo.filetype == "neo-tree" then
+                  -- Get the current node in neo-tree
+                  local neo_tree_utils = require("neo-tree.utils")
+                  local manager = require("neo-tree.sources.manager")
+                  local state = manager.get_state("filesystem")
+                  local node = state.tree:get_node()
+                  
+                  if node then
+                    path = node.path
+                    -- If it's a file, use its directory; if it's a directory, use it directly
+                    if node.type == "file" then
+                      path = vim.fn.fnamemodify(path, ":h")
+                    end
+                  end
+                else
+                  -- Check if current buffer has a file
+                  local current_file = vim.api.nvim_buf_get_name(0)
+                  if current_file and current_file ~= "" and vim.fn.filereadable(current_file) == 1 then
+                    -- Use the directory of the current file
+                    path = vim.fn.fnamemodify(current_file, ":h")
+                  end
+                end
+                
+                -- Open telescope file browser with determined path or fallback to cwd
+                if path then
+                  require("telescope").extensions.file_browser.file_browser({ path = path })
+                else
+                  require("telescope").extensions.file_browser.file_browser()
+                end
+              end,
+              desc = "File browser (context-aware)" 
+            },
 
             gL = { "<cmd>GithubLink<cr>", desc = "Copy Github link to clipboard" },
 
