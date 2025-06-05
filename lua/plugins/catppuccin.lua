@@ -72,11 +72,24 @@ return {
         lsp = true,
       },
       which_key = true,
+      -- Add Trouble integration for proper theming
+      lsp_trouble = true,
+      mini = {
+        enabled = true,
+        indentscope_color = "",
+      },
     },
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
     -- Set colorscheme after options
     vim.cmd.colorscheme("catppuccin")
+    
+    -- Manual Trouble v3 highlight fixes
+    vim.api.nvim_set_hl(0, "TroubleNormal", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TroubleText", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TroubleCount", { link = "TabLineSel" })
+    vim.api.nvim_set_hl(0, "TroubleDirectory", { link = "Directory" })
+    vim.api.nvim_set_hl(0, "TroubleFileName", { link = "Directory" })
   end,
 }

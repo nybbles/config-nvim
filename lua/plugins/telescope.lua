@@ -2,6 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "folke/trouble.nvim",
+    "nvim-telescope/telescope-file-browser.nvim",
   },
   opts = {
     defaults = {
@@ -43,5 +44,32 @@ return {
     }
 
     telescope.setup(opts)
+    
+    -- Configure file browser with proper keybindings
+    telescope.setup({
+      extensions = {
+        file_browser = {
+          hijack_netrw = true,
+          mappings = {
+            ["i"] = {
+              ["<C-d>"] = require("telescope._extensions.file_browser.actions").remove,
+              ["<C-r>"] = require("telescope._extensions.file_browser.actions").rename,
+              ["<C-y>"] = require("telescope._extensions.file_browser.actions").copy,
+              ["<C-n>"] = require("telescope._extensions.file_browser.actions").create,
+              -- Remove <C-m> mapping to restore default enter behavior
+            },
+            ["n"] = {
+              ["d"] = require("telescope._extensions.file_browser.actions").remove,
+              ["r"] = require("telescope._extensions.file_browser.actions").rename,
+              ["y"] = require("telescope._extensions.file_browser.actions").copy,
+              ["n"] = require("telescope._extensions.file_browser.actions").create,
+              -- Remove m mapping to restore default enter behavior
+            },
+          },
+        },
+      },
+    })
+    
+    telescope.load_extension("file_browser")
   end,
 }

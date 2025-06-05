@@ -34,33 +34,58 @@ return {
             ["<Leader>w="] = { "<cmd>WindowsEqualize<cr>", desc = "Equalize windows" },
 
             ["<Leader>t"] = { name = "Terminals" },
-            ["<Leader>ts"] = { function() require("custom.terminal-picker").terminal_picker() end, desc = "Search/select terminal" },
-            ["<Leader>tf"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "float" }) end, desc = "Float terminal" },
-            ["<Leader>th"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "horizontal" }) end, desc = "Horizontal terminal" },
-            ["<Leader>tv"] = { function() require("custom.terminal-picker").terminal_picker({ direction = "vertical" }) end, desc = "Vertical terminal" },
+            ["<Leader>ts"] = {
+              function() require("custom.terminal-picker").terminal_picker() end,
+              desc = "Search/select terminal",
+            },
+            ["<Leader>tf"] = {
+              function() require("custom.terminal-picker").terminal_picker { direction = "float" } end,
+              desc = "Float terminal",
+            },
+            ["<Leader>th"] = {
+              function() require("custom.terminal-picker").terminal_picker { direction = "horizontal" } end,
+              desc = "Horizontal terminal",
+            },
+            ["<Leader>tv"] = {
+              function() require("custom.terminal-picker").terminal_picker { direction = "vertical" } end,
+              desc = "Vertical terminal",
+            },
             ["<Leader>tr"] = { "<cmd>ToggleTermSetName<cr>", desc = "Rename terminal" },
-            ["<Leader>tg"] = { function() require("custom.terminal-picker").terminal_picker({ cmd = "lazygit", direction = "float" }) end, desc = "Lazygit terminal" },
+            ["<Leader>tg"] = {
+              function() require("custom.terminal-picker").terminal_picker { cmd = "lazygit", direction = "float" } end,
+              desc = "Lazygit terminal",
+            },
 
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
             ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
+
+            -- File operations
+            ["<Leader>f"] = { name = "Find" },
+            ["<Leader>fb"] = { "<cmd>Telescope file_browser<cr>", desc = "File browser" },
 
             gL = { "<cmd>GithubLink<cr>", desc = "Copy Github link to clipboard" },
 
             ["<Leader>O"] = { "<cmd>Octo<cr>", desc = "Octo" },
 
             ["<Leader>x"] = { name = "Trouble" },
-            ["<Leader>xx"] = { "<cmd>Trouble diagnostics toggle win.position=right<cr>", desc = "Diagnostics" },
+            ["<Leader>xx"] = { "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
             ["<Leader>xX"] = {
-              "<cmd>Trouble diagnostics toggle filter.buf=0 win.position=right<cr>",
+              "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
               desc = "Buffer diagnostics",
             },
-            ["<Leader>xs"] = { "<cmd>Trouble symbols toggle focus=false win.position=right<cr>", desc = "Symbols" },
+            ["<Leader>xs"] = { "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols" },
             ["<Leader>xl"] = {
-              "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+              "<cmd>Trouble lsp toggle focus=false<cr>",
               desc = "LSP references, definitions, ...",
             },
-            ["<Leader>xL"] = { "<cmd>Trouble loclist toggle win.position=right<cr>", desc = "Location list" },
-            ["<Leader>xQ"] = { "<cmd>Trouble qflist toggle win.position=right<cr>", desc = "Quickfix list" },
+            ["<Leader>xL"] = { "<cmd>Trouble loclist toggle<cr>", desc = "Location list" },
+            ["<Leader>xQ"] = { "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix list" },
+          },
+          v = {
+            -- Visual mode LSP mappings
+            ["<Leader>l"] = { name = "LSP" },
+            ["<Leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
+            ["<Leader>lf"] = { "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format selection" },
           },
           t = {
             -- setting a mapping to false will disable it

@@ -123,7 +123,11 @@ return {
     vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Go to implementation" })
     vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, { desc = "Find references" })
     vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover documentation" })
-    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature help" })
+    vim.keymap.set("n", "<leader>ls", "<cmd>Telescope aerial<cr>", { desc = "Search symbols in file" })
+    
+    -- Visual mode LSP keymaps
+    vim.keymap.set("v", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action (range)" })
+    vim.keymap.set("v", "<leader>lf", vim.lsp.buf.format, { desc = "Format selection" })
     
     -- Setup Navbuddy if available
     local has_navbuddy, navbuddy = pcall(require, "nvim-navbuddy")
