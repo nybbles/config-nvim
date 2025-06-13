@@ -5,6 +5,9 @@
 -- Configure autoread for automatically updating buffers when modified externally
 vim.opt.autoread = true
 
+-- Disable inccommand to prevent UI issues during search
+vim.opt.inccommand = ""
+
 -- Ensure Catppuccin is the default colorscheme
 vim.cmd.colorscheme("catppuccin")
 

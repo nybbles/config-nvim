@@ -62,19 +62,6 @@ return {
           navbuddy.attach(client, bufnr)
         end,
       },
-      pyright = {
-        settings = {
-          pyright = {},
-          python = {
-            analysis = {
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = "workspace",
-            },
-          },
-        },
-      },
       pylsp = {
         settings = {
           pylsp = {
@@ -93,6 +80,12 @@ return {
               jedi_symbols = { enabled = true },
               jedi_signature_help = { enabled = true },
               rope_autoimport = {
+                enabled = true,
+              },
+              rope_completion = {
+                enabled = true,
+              },
+              rope_rename = {
                 enabled = true,
               },
               pycodestyle = {

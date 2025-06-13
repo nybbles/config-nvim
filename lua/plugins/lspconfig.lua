@@ -28,7 +28,6 @@ return {
     if has_mason_lsp then
       mason_lspconfig.setup({
         ensure_installed = {
-          "pyright",           -- Python
           "ruff",              -- Python linting
           "rust_analyzer",     -- Rust
           "lua_ls",            -- Lua
@@ -43,20 +42,6 @@ return {
     local has_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
     
-    -- Python configuration
-    lspconfig.pyright.setup({
-      capabilities = capabilities,
-      settings = {
-        python = {
-          analysis = {
-            autoSearchPaths = true,
-            diagnosticMode = "workspace",
-            useLibraryCodeForTypes = true,
-            typeCheckingMode = "basic",
-          },
-        },
-      },
-    })
     
     -- Additional Python linting with ruff
     lspconfig.ruff.setup({
