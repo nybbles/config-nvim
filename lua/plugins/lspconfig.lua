@@ -70,28 +70,28 @@ return {
       },
     })
     
-    -- Rust configuration with better parameter hints
-    lspconfig.rust_analyzer.setup({
-      capabilities = capabilities,
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            allFeatures = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-          checkOnSave = {
-            command = "clippy",
-          },
-          inlayHints = {
-            chainingHints = true,
-            parameterHints = true,
-            typeHints = true,
-          },
-        },
-      },
-    })
+    -- Rust configuration removed - using rust-tools.nvim instead
+    -- lspconfig.rust_analyzer.setup({
+    --   capabilities = capabilities,
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --       cargo = {
+    --         allFeatures = true,
+    --       },
+    --       procMacro = {
+    --         enable = true,
+    --       },
+    --       checkOnSave = {
+    --         command = "clippy",
+    --       },
+    --       inlayHints = {
+    --         chainingHints = true,
+    --         parameterHints = true,
+    --         typeHints = true,
+    --       },
+    --     },
+    --   },
+    -- })
     
     -- Bash
     lspconfig.bashls.setup({

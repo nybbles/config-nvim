@@ -24,6 +24,7 @@ return {
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = {
+              enable = true,
               command = "clippy",
             },
             procMacro = {
@@ -41,13 +42,14 @@ return {
         },
         on_attach = function(_, bufnr)
           -- Set keymap only for Rust files
-          vim.keymap.set("n", "<leader>rr", rust_tools.runnables.runnables, 
+          local rt = require("rust-tools")
+          vim.keymap.set("n", "<leader>rr", rt.runnables.runnables, 
             { desc = "Rust Runnables", buffer = bufnr })
-          vim.keymap.set("n", "<leader>re", rust_tools.expand_macro.expand_macro, 
+          vim.keymap.set("n", "<leader>re", rt.expand_macro.expand_macro, 
             { desc = "Rust Expand Macro", buffer = bufnr })
           vim.keymap.set("n", "<leader>rc", function() vim.cmd("e Cargo.toml") end, 
             { desc = "Open Cargo.toml", buffer = bufnr })
-          vim.keymap.set("n", "<leader>rh", rust_tools.inlay_hints.toggle, 
+          vim.keymap.set("n", "<leader>rh", rt.inlay_hints.toggle, 
             { desc = "Toggle Inlay Hints", buffer = bufnr })
         end,
       },

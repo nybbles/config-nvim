@@ -9,7 +9,7 @@ return {
   { "AstroNvim/astrocommunity" },
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
-  { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.rust" }, -- Commented out to avoid duplicate rust-analyzer
   { import = "astrocommunity.pack.markdown" },
   -- { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.colorscheme.catppuccin" },

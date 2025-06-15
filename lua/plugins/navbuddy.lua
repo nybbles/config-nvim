@@ -32,7 +32,7 @@ return {
     
     -- Forcibly connect to any active LSP client when opening
     vim.api.nvim_create_user_command("Navbuddy", function()
-      local clients = vim.lsp.get_active_clients({bufnr = 0})
+      local clients = vim.lsp.get_clients({bufnr = 0})
       if #clients == 0 then
         vim.notify("No LSP servers attached to this buffer", vim.log.levels.WARN)
         return
