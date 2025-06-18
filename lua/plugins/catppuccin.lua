@@ -4,7 +4,7 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = {
-    flavour = "mocha", -- Use mocha flavor (dark) for consistency
+    flavour = "auto", -- Auto-detect flavor based on vim.o.background
     transparent_background = false,
     term_colors = true,
     dim_inactive = {
