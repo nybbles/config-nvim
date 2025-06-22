@@ -12,7 +12,7 @@ return {
   -- { import = "astrocommunity.pack.rust" }, -- Commented out to avoid duplicate rust-analyzer
   { import = "astrocommunity.pack.markdown" },
   -- { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
+  -- { import = "astrocommunity.colorscheme.catppuccin" }, -- Using custom catppuccin config
   -- { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
