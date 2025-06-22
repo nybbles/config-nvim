@@ -90,10 +90,10 @@ return {
     -- Load custom obsidian functions
     local obsidian_custom = require("obsidian-custom")
     
-    -- Set up keybindings
-    vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Find/switch note" })
-    vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search in vault" })
-    vim.keymap.set("n", "<leader>on", function()
+    -- Set up keybindings under <leader>n (Notes)
+    vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Find/switch note" })
+    vim.keymap.set("n", "<leader>ns", "<cmd>ObsidianSearch<CR>", { desc = "Search in vault" })
+    vim.keymap.set("n", "<leader>nn", function()
       -- Prompt for title and create new note in slip-box
       vim.ui.input({ prompt = "Note title: " }, function(title)
         if title then
@@ -103,24 +103,24 @@ return {
         end
       end)
     end, { desc = "New note" })
-    vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<CR>", { desc = "Today's note" })
-    vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", { desc = "Yesterday's note" })
-    vim.keymap.set("n", "<leader>od", "<cmd>ObsidianTomorrow<CR>", { desc = "Tomorrow's note" })
-    vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show backlinks" })
-    vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show links" })
-    vim.keymap.set("n", "<leader>og", "<cmd>ObsidianTags<CR>", { desc = "Search tags" })
-    vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian app" })
-    vim.keymap.set("n", "<leader>op", "<cmd>ObsidianPasteImg<CR>", { desc = "Paste image" })
-    vim.keymap.set("n", "<leader>or", "<cmd>ObsidianRename<CR>", { desc = "Rename note" })
-    vim.keymap.set("n", "<leader>ow", "<cmd>ObsidianWorkspace<CR>", { desc = "Switch workspace" })
-    vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" })
-    vim.keymap.set("n", "<leader>oq", function()
+    vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianToday<CR>", { desc = "Today's note" })
+    vim.keymap.set("n", "<leader>ny", "<cmd>ObsidianYesterday<CR>", { desc = "Yesterday's note" })
+    vim.keymap.set("n", "<leader>nd", "<cmd>ObsidianTomorrow<CR>", { desc = "Tomorrow's note" })
+    vim.keymap.set("n", "<leader>nb", "<cmd>ObsidianBacklinks<CR>", { desc = "Show backlinks" })
+    vim.keymap.set("n", "<leader>nl", "<cmd>ObsidianLinks<CR>", { desc = "Show links" })
+    vim.keymap.set("n", "<leader>ng", "<cmd>ObsidianTags<CR>", { desc = "Search tags" })
+    vim.keymap.set("n", "<leader>no", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian app" })
+    vim.keymap.set("n", "<leader>np", "<cmd>ObsidianPasteImg<CR>", { desc = "Paste image" })
+    vim.keymap.set("n", "<leader>nr", "<cmd>ObsidianRename<CR>", { desc = "Rename note" })
+    vim.keymap.set("n", "<leader>nw", "<cmd>ObsidianWorkspace<CR>", { desc = "Switch workspace" })
+    vim.keymap.set("n", "<leader>ne", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" })
+    vim.keymap.set("n", "<leader>nq", function()
       -- Quick capture note with timestamp-based name
       obsidian_custom.quick_note()
     end, { desc = "Quick capture note" })
     
     -- Visual mode mappings
-    vim.keymap.set("v", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Create link" })
-    vim.keymap.set("v", "<leader>on", "<cmd>ObsidianLinkNew<CR>", { desc = "Create link to new note" })
+    vim.keymap.set("v", "<leader>nl", "<cmd>ObsidianLink<CR>", { desc = "Create link" })
+    vim.keymap.set("v", "<leader>nn", "<cmd>ObsidianLinkNew<CR>", { desc = "Create link to new note" })
   end,
 }

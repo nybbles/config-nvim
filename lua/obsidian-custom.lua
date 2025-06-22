@@ -31,7 +31,7 @@ function M.create_note_in_slip_box(title)
   local note_path = slip_box_path .. "/" .. note_id .. ".md"
   
   -- Create frontmatter content
-  local human_title = title or "quick"
+  local human_title = title or "unique"
   human_title = human_title:gsub("^%l", string.upper):gsub("%-", " ")
   
   local content = {
@@ -60,7 +60,7 @@ end
 
 -- Command for quick capture note
 function M.quick_note()
-  M.create_note_in_slip_box("quick")
+  M.create_note_in_slip_box("unique")
 end
 
 -- Command for new note with title
