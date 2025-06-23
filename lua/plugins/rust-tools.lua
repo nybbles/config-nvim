@@ -44,6 +44,14 @@ return {
           -- Set keymap only for Rust files
           local rt = require("rust-tools")
           
+          -- Enable format on save
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = bufnr })
+            end,
+          })
+          
           -- Only set keymaps if the functions exist
           if rt.runnables and rt.runnables.runnables then
             vim.keymap.set("n", "<leader>rr", rt.runnables.runnables, 

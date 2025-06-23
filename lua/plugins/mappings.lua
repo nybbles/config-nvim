@@ -10,6 +10,9 @@ return {
         mappings = {
           -- first key is the mode
           n = {
+            -- Disable the default <leader>n mapping that creates a new file
+            ["<Leader>n"] = false,
+            
             -- second key is the lefthand side of the map
             -- mappings seen under group name "Buffer"
             ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
@@ -32,6 +35,7 @@ return {
             ["<Leader>w_"] = { "<cmd>WindowsMaximizeVertically<cr>", desc = "Maximize windows vertically" },
             ["<Leader>w|"] = { "<cmd>WindowsMaximizeHorizontally<cr>", desc = "Maximize windows horizonally" },
             ["<Leader>w="] = { "<cmd>WindowsEqualize<cr>", desc = "Equalize windows" },
+            
 
             ["<Leader>t"] = { name = "Terminals" },
             ["<Leader>ts"] = {
@@ -58,6 +62,14 @@ return {
 
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
             ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
+            
+            -- LSP References and Refactoring
+            ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "References" },
+            ["gd"] = { "<cmd>Telescope lsp_definitions<cr>", desc = "Go to definition" },
+            ["gi"] = { "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementation" },
+            ["gt"] = { "<cmd>Telescope lsp_type_definitions<cr>", desc = "Go to type definition" },
+            ["<Leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename symbol" },
+            ["<Leader>lc"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code actions" },
 
             -- File operations
             ["<Leader>f"] = { name = "Find" },

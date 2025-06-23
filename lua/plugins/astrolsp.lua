@@ -46,6 +46,17 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      marksman = {
+        settings = {
+          marksman = {
+            completion = {
+              wiki = {
+                style = "title"
+              }
+            }
+          }
+        }
+      },
       ruff_lsp = {
         init_options = {
           settings = {

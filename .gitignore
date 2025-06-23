@@ -1,0 +1,2 @@
+# Local configuration files that should not be shared across machines
+lua/obsidian-vaults.lua

@@ -1,0 +1,15 @@
+-- Example Obsidian vault configuration
+-- Copy this file to obsidian-vaults.lua and customize for your machine
+-- The obsidian-vaults.lua file is gitignored
+
+return {
+  {
+    name = "Personal",
+    path = "~/Documents/Personal",
+  },
+  {
+    name = "Work",
+    path = "~/Documents/Work",
+  },
+  -- Add more vaults as needed
+}
