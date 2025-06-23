@@ -10,6 +10,9 @@ return {
         mappings = {
           -- first key is the mode
           n = {
+            -- Disable the default <leader>n mapping that creates a new file
+            ["<Leader>n"] = false,
+            
             -- second key is the lefthand side of the map
             -- mappings seen under group name "Buffer"
             ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
