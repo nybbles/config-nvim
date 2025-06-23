@@ -24,6 +24,21 @@ return {
         position = "50%",
         scrolloff = 3,
       },
+      node_markers = {
+        enabled = true,
+        icons = {
+          leaf = "  ",
+          leaf_selected = " → ",
+          branch = " ",
+        },
+      },
+      use_default_mappings = true,
+      source_buffer = {
+        follow_node = true,
+        highlight = true,
+        reorient = "smart",
+        scrolloff = nil,
+      },
       lsp = {
         auto_attach = true,
         preference = nil,
