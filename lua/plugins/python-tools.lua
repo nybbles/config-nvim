@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap-python",
-    ft = { "python", "quarto" },
+    ft = { "python" },
     dependencies = {
       "mfussenegger/nvim-dap",
     },
@@ -44,7 +44,7 @@ return {
       
       -- Add keymaps
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = {"python", "quarto"},
+        pattern = {"python"},
         callback = function()
           -- Essential DAP controls
           vim.keymap.set("n", "<leader>dc", function() dap.continue() end, { desc = "Debug: Start/Continue", buffer = true })
@@ -77,7 +77,7 @@ return {
   {
     "linux-cultist/venv-selector.nvim",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-    ft = { "python", "quarto" },
+    ft = { "python" },
     branch = "regexp",
     config = function()
       require("venv-selector").setup({
