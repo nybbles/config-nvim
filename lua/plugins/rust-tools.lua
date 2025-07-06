@@ -11,6 +11,10 @@ return {
       return
     end
     
+    -- Get capabilities from cmp-nvim-lsp if available
+    local has_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
+    
     rust_tools.setup({
       tools = {
         inlay_hints = {
@@ -21,6 +25,7 @@ return {
         },
       },
       server = {
+        capabilities = capabilities,
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = {
