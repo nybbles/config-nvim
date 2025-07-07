@@ -6,6 +6,9 @@ return {
     -- Load for any markdown file in Documents folder
     "BufReadPre " .. vim.fn.expand "~" .. "/Documents/**.md",
     "BufNewFile " .. vim.fn.expand "~" .. "/Documents/**.md",
+    -- Load for any markdown file in themester notes
+    "BufReadPre " .. vim.fn.expand "~" .. "/code/themester/notes/**.md",
+    "BufNewFile " .. vim.fn.expand "~" .. "/code/themester/notes/**.md",
   },
   dependencies = {
     -- Required.
