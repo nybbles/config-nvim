@@ -1,15 +1,10 @@
 return {
   "catppuccin/nvim",
-  enabled = false,
   lazy = false,
   name = "catppuccin",
   priority = 1000,
   opts = {
-<<<<<<< HEAD
-    flavour = "mocha", -- Always use mocha (dark) theme
-=======
-    flavour = "mocha", -- Use mocha flavor (dark) for consistency
->>>>>>> main
+    flavour = "mocha",
     transparent_background = false,
     term_colors = true,
     dim_inactive = {
@@ -38,11 +33,7 @@ return {
       nvimtree = true,
       telescope = true,
       treesitter = true,
-<<<<<<< HEAD
       notify = true,
-=======
-      notify = true, 
->>>>>>> main
       mason = true,
       navic = {
         enabled = true,
@@ -63,11 +54,7 @@ return {
           information = { "underline" },
         },
         inlay_hints = {
-<<<<<<< HEAD
           background = true,
-=======
-          background = true, 
->>>>>>> main
         },
       },
       dap = {
@@ -95,9 +82,6 @@ return {
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
-    -- Set colorscheme after options
-<<<<<<< HEAD
-    vim.cmd.colorscheme "catppuccin"
 
     -- Manual Trouble v3 highlight fixes
     vim.api.nvim_set_hl(0, "TroubleNormal", { link = "Normal" })
@@ -105,8 +89,5 @@ return {
     vim.api.nvim_set_hl(0, "TroubleCount", { link = "TabLineSel" })
     vim.api.nvim_set_hl(0, "TroubleDirectory", { link = "Directory" })
     vim.api.nvim_set_hl(0, "TroubleFileName", { link = "Directory" })
-=======
-    vim.cmd.colorscheme("catppuccin")
->>>>>>> main
   end,
 }

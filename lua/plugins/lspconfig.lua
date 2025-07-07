@@ -5,14 +5,14 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
-    "SmiteshP/nvim-navbuddy", 
+    "SmiteshP/nvim-navbuddy",
     "SmiteshP/nvim-navic",
   },
   config = function()
     -- Configure Mason for LSP server installation
     local has_mason, mason = pcall(require, "mason")
     if has_mason then
-      mason.setup({
+      mason.setup {
         ui = {
           border = "rounded",
           icons = {
@@ -21,35 +21,31 @@ return {
             package_uninstalled = "✗",
           },
         },
-      })
+      }
     end
-    
+
     local has_mason_lsp, mason_lspconfig = pcall(require, "mason-lspconfig")
     if has_mason_lsp then
-      mason_lspconfig.setup({
+      mason_lspconfig.setup {
         ensure_installed = {
-<<<<<<< HEAD
-=======
-          "pyright",           -- Python
->>>>>>> main
-          "ruff",              -- Python linting
-          "rust_analyzer",     -- Rust
-          "lua_ls",            -- Lua
-          "bashls",            -- Bash
+          "pyright", -- Python
+          "ruff", -- Python linting
+          "rust_analyzer", -- Rust
+          "lua_ls", -- Lua
+          "bashls", -- Bash
         },
         automatic_installation = true,
-      })
+      }
     end
-    
+
     -- Custom LSP setup
-    local lspconfig = require("lspconfig")
+    local lspconfig = require "lspconfig"
     local has_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
-    
-<<<<<<< HEAD
-=======
+    local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities()
+      or vim.lsp.protocol.make_client_capabilities()
+
     -- Python configuration
-    lspconfig.pyright.setup({
+    lspconfig.pyright.setup {
       capabilities = capabilities,
       settings = {
         python = {
@@ -61,16 +57,15 @@ return {
           },
         },
       },
-    })
->>>>>>> main
-    
+    }
+
     -- Additional Python linting with ruff
-    lspconfig.ruff.setup({
+    lspconfig.ruff.setup {
       capabilities = capabilities,
-    })
-    
+    }
+
     -- Lua configuration
-    lspconfig.lua_ls.setup({
+    lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -89,34 +84,10 @@ return {
           },
         },
       },
-    })
-    
-<<<<<<< HEAD
-    -- Rust configuration removed - using rust-tools.nvim instead
-    -- lspconfig.rust_analyzer.setup({
-    --   capabilities = capabilities,
-    --   settings = {
-    --     ["rust-analyzer"] = {
-    --       cargo = {
-    --         allFeatures = true,
-    --       },
-    --       procMacro = {
-    --         enable = true,
-    --       },
-    --       checkOnSave = {
-    --         command = "clippy",
-    --       },
-    --       inlayHints = {
-    --         chainingHints = true,
-    --         parameterHints = true,
-    --         typeHints = true,
-    --       },
-    --     },
-    --   },
-    -- })
-=======
+    }
+
     -- Rust configuration with better parameter hints
-    lspconfig.rust_analyzer.setup({
+    lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
       settings = {
         ["rust-analyzer"] = {
@@ -136,14 +107,13 @@ return {
           },
         },
       },
-    })
->>>>>>> main
-    
+    }
+
     -- Bash
-    lspconfig.bashls.setup({
+    lspconfig.bashls.setup {
       capabilities = capabilities,
-    })
-    
+    }
+
     -- Global LSP keymaps
     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format document" })
     vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
@@ -154,22 +124,18 @@ return {
     vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Go to implementation" })
     vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, { desc = "Find references" })
     vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, { desc = "Hover documentation" })
-<<<<<<< HEAD
     vim.keymap.set("n", "<leader>ls", "<cmd>Telescope aerial<cr>", { desc = "Search symbols in file" })
-    
+
     -- Visual mode LSP keymaps
     vim.keymap.set("v", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action (range)" })
     vim.keymap.set("v", "<leader>lf", vim.lsp.buf.format, { desc = "Format selection" })
-=======
-    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature help" })
->>>>>>> main
-    
+
     -- Setup Navbuddy if available
     local has_navbuddy, navbuddy = pcall(require, "nvim-navbuddy")
     if has_navbuddy then
       vim.keymap.set("n", "<leader>ln", "<cmd>Navbuddy<CR>", { desc = "Navigate code structure" })
     end
-    
+
     -- Diagnostics
     vim.keymap.set("n", "<leader>ll", vim.diagnostic.open_float, { desc = "Line diagnostics" })
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
