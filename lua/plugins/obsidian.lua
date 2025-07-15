@@ -2,6 +2,7 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
+  cmd = { "ObsidianWorkspace", "ObsidianNew" },
   event = {
     -- Load for any markdown file in Documents folder
     "BufReadPre " .. vim.fn.expand "~" .. "/Documents/**.md",
