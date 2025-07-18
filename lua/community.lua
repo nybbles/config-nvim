@@ -7,16 +7,12 @@
 ---@type LazySpec
 return {
   { "AstroNvim/astrocommunity" },
+  -- Reduced community imports for faster startup
   { import = "astrocommunity.pack.lua" },
-  -- import/override with your plugins folder
-  -- { import = "astrocommunity.pack.rust" }, -- Commented out to avoid duplicate rust-analyzer
-  { import = "astrocommunity.pack.markdown" },
-  -- { import = "astrocommunity.pack.python" },
-  -- { import = "astrocommunity.colorscheme.catppuccin" }, -- Using custom catppuccin config
-  -- { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
-  { import = "astrocommunity.split-and-window.windows-nvim" },
-  { import = "astrocommunity.editing-support.zen-mode-nvim" },
-  { import = "astrocommunity.editing-support.vim-move" },
-  { import = "astrocommunity.recipes.neovide" },
-  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
+  -- Disabled for performance - can be re-enabled as needed:
+  -- { import = "astrocommunity.pack.markdown" },
+  -- { import = "astrocommunity.split-and-window.windows-nvim" },
+  -- { import = "astrocommunity.editing-support.zen-mode-nvim" },
+  -- { import = "astrocommunity.editing-support.vim-move" },
+  -- { import = "astrocommunity.recipes.neovide" },
 }

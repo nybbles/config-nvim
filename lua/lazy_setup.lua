@@ -34,6 +34,7 @@ require("lazy").setup({
   install = { colorscheme = { "astrodark", "habamax" } },
   defaults = {
     lazy = true, -- Make all plugins lazy by default
+    version = false, -- Disable version constraints for faster loading
   },
   performance = {
     cache = {
