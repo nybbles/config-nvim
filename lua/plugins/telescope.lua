@@ -1,3 +1,6 @@
+-- DISABLED for AstroNvim v5: telescope is replaced by snacks.nvim
+if true then return {} end -- DISABLE: telescope replaced by snacks.nvim in v5
+
 return {
   "nvim-telescope/telescope.nvim",
   lazy = true,

@@ -1,3 +1,6 @@
+-- DISABLED for AstroNvim v5: Let v5 handle snippet configuration
+if true then return {} end -- DISABLE: Let v5 handle LuaSnip config
+
 return {
   "L3MON4D3/LuaSnip",
   lazy = true,

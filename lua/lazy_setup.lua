@@ -1,10 +1,10 @@
--- Optimized lazy_setup.lua for faster startup
--- Backup your current lazy_setup.lua before using this
+-- AstroNvim v5 configuration
+-- Migrated from v4 with performance optimizations
 
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^4",
+    version = "^5",
     import = "astronvim.plugins",
     opts = {
       mapleader = " ",
@@ -73,13 +73,5 @@ require("lazy").setup({
       },
     },
   },
-  -- Lazy load slow starting plugins
-  spec = {
-    { "catppuccin/nvim", lazy = false, priority = 1000 }, -- Keep theme non-lazy
-    { "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
-    { "neovim/nvim-lspconfig", event = { "BufReadPost", "BufNewFile" } },
-    { "hrsh7th/nvim-cmp", event = "InsertEnter" },
-    { "L3MON4D3/LuaSnip", event = "InsertEnter" },
-    { "nvim-telescope/telescope.nvim", cmd = "Telescope" },
-  },
+  -- v5 uses snacks.nvim and blink.cmp, remove manual plugin specs
 })

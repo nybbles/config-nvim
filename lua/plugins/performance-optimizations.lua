@@ -1,5 +1,8 @@
 -- Performance optimizations for Neovim startup
--- This file contains suggestions to speed up Neovim startup time
+-- DISABLED for AstroNvim v5: v5 uses snacks.nvim and blink.cmp instead of these plugins
+-- This file contains v4-specific optimizations that are no longer needed
+
+if true then return {} end -- DISABLE: v4 optimizations not needed in v5
 
 return {
   -- 1. Optimize Catppuccin theme loading (currently takes ~700ms)

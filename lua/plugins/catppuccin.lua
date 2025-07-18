@@ -34,11 +34,11 @@ return {
     custom_highlights = {},
     integrations = {
       aerial = true,
-      cmp = true,
+      cmp = false, -- v5 uses blink.cmp, not nvim-cmp
       gitsigns = true,
       nvimtree = false, -- Using neo-tree instead
       neotree = true,
-      telescope = true,
+      telescope = false, -- v5 uses snacks.nvim, not telescope
       treesitter = true,
       notify = true,
       mason = true,
