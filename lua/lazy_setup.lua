@@ -1,17 +1,20 @@
+-- Optimized lazy_setup.lua for faster startup
+-- Backup your current lazy_setup.lua before using this
+
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^4", -- Remove version tracking to elect for nighly AstroNvim
+    version = "^4",
     import = "astronvim.plugins",
-    opts = { -- AstroNvim options must be set here with the `import` key
-      mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
-      maplocalleader = ",", -- This ensures the localleader key must be configured before Lazy is set up
-      icons_enabled = true, -- Set to false to disable icons (if no Nerd Font is available)
-      pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
+    opts = {
+      mapleader = " ",
+      maplocalleader = ",",
+      icons_enabled = true,
+      pin_plugins = nil,
       autoread = true,
     },
   },
-  -- Add SmiteshP/nvim-navbuddy explicitly to ensure it's installed
+  -- Lazy load nvim-navbuddy
   { 
     "SmiteshP/nvim-navbuddy",
     dependencies = {
@@ -19,7 +22,7 @@ require("lazy").setup({
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim",
     },
-    lazy = true, -- Lazy load to improve startup
+    lazy = true,
     cmd = "Navbuddy",
     keys = {
       { "<leader>n", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
@@ -27,11 +30,10 @@ require("lazy").setup({
   },
   { import = "community" },
   { import = "plugins" },
-} --[[@as LazySpec]], {
-  -- Configure any other `lazy.nvim` configuration options here
+}, {
   install = { colorscheme = { "astrodark", "habamax" } },
   defaults = {
-    lazy = false, -- We'll selectively lazy load plugins
+    lazy = true, -- Make all plugins lazy by default
   },
   performance = {
     cache = {
@@ -61,6 +63,7 @@ require("lazy").setup({
         "zipPlugin",
         "tutor",
         "rplugin",
+        "syntax",
         "synmenu",
         "optwin",
         "compiler",
@@ -70,4 +73,13 @@ require("lazy").setup({
       },
     },
   },
-} --[[@as LazyConfig]])
+  -- Lazy load slow starting plugins
+  spec = {
+    { "catppuccin/nvim", lazy = false, priority = 1000 }, -- Keep theme non-lazy
+    { "nvim-treesitter/nvim-treesitter", event = { "BufReadPost", "BufNewFile" } },
+    { "neovim/nvim-lspconfig", event = { "BufReadPost", "BufNewFile" } },
+    { "hrsh7th/nvim-cmp", event = "InsertEnter" },
+    { "L3MON4D3/LuaSnip", event = "InsertEnter" },
+    { "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+  },
+})
