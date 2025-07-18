@@ -6,7 +6,13 @@ return {
   opts = {
     flavour = "mocha",
     transparent_background = false,
-    term_colors = true,
+    term_colors = false, -- Disabled for performance
+    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+    compile = {
+      enabled = true,
+      path = vim.fn.stdpath("cache") .. "/catppuccin",
+      suffix = "_compiled"
+    },
     dim_inactive = {
       enabled = false,
     },
@@ -30,7 +36,8 @@ return {
       aerial = true,
       cmp = true,
       gitsigns = true,
-      nvimtree = true,
+      nvimtree = false, -- Using neo-tree instead
+      neotree = true,
       telescope = true,
       treesitter = true,
       notify = true,
@@ -41,20 +48,11 @@ return {
       },
       native_lsp = {
         enabled = true,
-        virtual_text = {
-          errors = { "italic" },
-          hints = { "italic" },
-          warnings = { "italic" },
-          information = { "italic" },
-        },
         underlines = {
-          errors = { "underline" },
-          hints = { "underline" },
-          warnings = { "underline" },
-          information = { "underline" },
-        },
-        inlay_hints = {
-          background = true,
+          errors = { "undercurl" },
+          hints = { "undercurl" },
+          warnings = { "undercurl" },
+          information = { "undercurl" },
         },
       },
       dap = {
@@ -65,19 +63,13 @@ return {
         enabled = true,
         colored_indent_levels = false,
       },
-      -- Remove navbuddy integration as it's not supported yet
-      -- navbuddy = true,
       illuminate = {
         enabled = true,
         lsp = true,
       },
       which_key = true,
-      -- Add Trouble integration for proper theming
       lsp_trouble = true,
-      mini = {
-        enabled = true,
-        indentscope_color = "",
-      },
+      mini = false, -- Disable if not using mini plugins
     },
   },
   config = function(_, opts)

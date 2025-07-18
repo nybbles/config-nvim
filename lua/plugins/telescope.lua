@@ -1,5 +1,12 @@
 return {
   "nvim-telescope/telescope.nvim",
+  lazy = true,
+  cmd = "Telescope",
+  keys = {
+    { "<leader>f", desc = "Find" },
+    { "<leader>l", desc = "LSP" },
+    { "<leader>s", desc = "Search" },
+  },
   dependencies = {
     "folke/trouble.nvim",
     "nvim-telescope/telescope-file-browser.nvim",

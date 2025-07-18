@@ -19,22 +19,54 @@ require("lazy").setup({
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim",
     },
-    lazy = false, -- Load immediately
+    lazy = true, -- Lazy load to improve startup
+    cmd = "Navbuddy",
+    keys = {
+      { "<leader>n", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
+    },
   },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrodark", "habamax" } },
+  defaults = {
+    lazy = false, -- We'll selectively lazy load plugins
+  },
   performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true,
     rtp = {
-      -- disable some rtp plugins, add more to your liking
+      reset = true,
       disabled_plugins = {
+        "2html_plugin",
+        "getscript",
+        "getscriptPlugin",
         "gzip",
+        "logipat",
+        "netrw",
         "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
         "tarPlugin",
-        "tohtml",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
         "zipPlugin",
+        "tutor",
+        "rplugin",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
+        "tohtml",
       },
     },
   },
