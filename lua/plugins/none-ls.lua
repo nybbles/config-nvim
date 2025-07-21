@@ -28,7 +28,7 @@ return {
         extra_args = { 
           "--prose-wrap=always", 
           "--print-width=100",
-          "--tab-width=3",
+          "--tab-width=4",
           "--use-tabs=false"
         },
       }),
