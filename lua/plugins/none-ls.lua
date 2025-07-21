@@ -28,8 +28,8 @@ return {
         extra_args = { 
           "--prose-wrap", "always", 
           "--print-width", "100",
-          "--single-attribute-per-line", "false",
-          "--embedded-language-formatting", "off"
+          "--tab-width", "2",
+          "--use-tabs", "false"
         },
       }),
       null_ls.builtins.diagnostics.yamllint,
