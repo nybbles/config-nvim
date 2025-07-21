@@ -26,10 +26,10 @@ return {
       null_ls.builtins.formatting.prettierd.with({
         filetypes = { "markdown" },
         extra_args = { 
-          "--prose-wrap", "always", 
-          "--print-width", "100",
-          "--tab-width", "2",
-          "--use-tabs", "false"
+          "--prose-wrap=always", 
+          "--print-width=100",
+          "--tab-width=2",
+          "--use-tabs=false"
         },
       }),
       null_ls.builtins.diagnostics.yamllint,
