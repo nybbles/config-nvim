@@ -67,6 +67,19 @@ return {
         time_format = "%H:%M",
       },
       
+      -- Configure daily notes
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "Daily notes",
+        -- Optional, if you want to change the date format for the ID of daily notes.
+        -- Include the folder structure in the date format
+        date_format = "%Y/%m/%d/%Y-%m-%d",
+        -- Optional, if you want to change the date format of the default alias of daily notes.
+        alias_format = "%B %-d, %Y",
+        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+        template = "Daily note template.md"
+      },
+      
       -- Optional, customize how note IDs are generated given an optional title.
       note_id_func = function(title)
         -- Create human-readable, machine-parseable timestamp with timezone
