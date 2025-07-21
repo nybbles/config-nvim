@@ -6,6 +6,9 @@ return {
     -- Setup autolist with default configuration
     require("autolist").setup()
     
+    -- Debug: print when plugin loads
+    print("autolist.nvim loaded successfully!")
+    
     -- Set up keymaps according to official documentation
     local map = vim.keymap.set
     
