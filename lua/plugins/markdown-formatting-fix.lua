@@ -17,9 +17,9 @@ return {
             -- Ensure indentation is preserved
             vim.bo.autoindent = true
             vim.bo.smartindent = false
-            -- Set proper indentation for lists
-            vim.bo.tabstop = 2
-            vim.bo.shiftwidth = 2
+            -- Set proper indentation for lists (3 spaces for Prettier compatibility)
+            vim.bo.tabstop = 3
+            vim.bo.shiftwidth = 3
             vim.bo.expandtab = true
           end,
         },
