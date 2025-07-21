@@ -1,80 +1,31 @@
 -- Automatic list continuation and renumbering for markdown
 return {
   "gaoDean/autolist.nvim",
-  ft = { "markdown", "text" },
+  ft = { "markdown", "text", "tex", "plaintex" },
   config = function()
-    require("autolist").setup({
-      -- Enable automatic list continuation
-      enabled = true,
-      
-      -- List configuration
-      lists = {
-        markdown = {
-          -- Enable all markdown list types
-          unordered = { "-", "*", "+" },
-          ordered = function(c)
-            -- Support for 1. 2. 3. style lists
-            return c:match("^%d+%.")
-          end,
-          -- Support for checkbox lists
-          todo = { "[ ]", "[x]", "[X]" },
-        },
-      },
-      
-      -- Automatic list continuation
-      create_enter_mapping = true,
-      
-      -- Cycle between list types with a keybinding
-      cycle = {
-        "-",   -- Dash list
-        "*",   -- Star list  
-        "+",   -- Plus list
-        "1.",  -- Numbered list
-        "1)",  -- Parenthesis list
-        "a)",  -- Letter list
-        "[ ]", -- Checkbox
-      },
-      
-      -- Indent behavior after colon
-      colon = {
-        indent = true,
-        indent_raw = true,
-        preferred = "-",
-      },
-      
-      -- Checkbox configuration
-      checkbox = {
-        left = "%[",
-        right = "%]",
-        fill = "x",
-      },
-      
-      -- Normal mode mappings
-      normal_mappings = {
-        -- Recalculate list to fix numbering
-        recalculate = "<leader>lr",
-        -- Cycle list type
-        cycle = "<leader>lc", 
-        -- Indent/dedent
-        indent = ">>",
-        dedent = "<<",
-      },
-      
-      -- Insert mode mappings
-      insert_mappings = {
-        -- Tab to indent in lists
-        indent = "<Tab>",
-        dedent = "<S-Tab>",
-      },
-    })
+    -- Setup autolist with default configuration
+    require("autolist").setup()
     
-    -- Additional keymaps for list management
+    -- Set up keymaps according to official documentation
     local map = vim.keymap.set
     
-    -- Visual mode: recalculate selection
-    map("v", "<leader>lr", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate selected list" })
+    -- Insert mode mappings
+    map("i", "<Tab>", "<cmd>AutolistTab<cr>", { desc = "Indent list item" })
+    map("i", "<S-Tab>", "<cmd>AutolistShiftTab<cr>", { desc = "Dedent list item" })
+    map("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>", { desc = "Create new list item" })
     
-    -- Toggle checkbox
-    map("n", "<leader>lt", "<cmd>AutolistToggle<cr>", { desc = "Toggle checkbox" })
+    -- Normal mode mappings
+    map("n", "o", "o<cmd>AutolistNewBullet<cr>", { desc = "New list item below" })
+    map("n", "O", "O<cmd>AutolistNewBulletBefore<cr>", { desc = "New list item above" })
+    map("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>", { desc = "Toggle checkbox" })
+    map("n", "<C-r>", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate list numbering" })
+    
+    -- Cycle list types with dot-repeat support
+    map("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true, desc = "Cycle to next list type" })
+    map("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true, desc = "Cycle to previous list type" })
+    
+    -- Alternative keymaps for easier access
+    map("n", "<leader>lr", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate list numbering" })
+    map("n", "<leader>lc", "<cmd>AutolistCycleNext<cr>", { desc = "Cycle list type" })
   end,
 }
