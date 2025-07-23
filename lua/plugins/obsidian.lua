@@ -45,7 +45,7 @@ return {
           opts = { noremap = false, expr = true, buffer = true },
         },
         -- Toggle check-boxes.
-        ["<leader>ch"] = {
+        ["<leader>nc"] = {
           action = function()
             return require("obsidian").util.toggle_checkbox()
           end,
