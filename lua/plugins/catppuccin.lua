@@ -33,7 +33,6 @@ return {
     color_overrides = {},
     custom_highlights = {},
     integrations = {
-      aerial = true,
       cmp = false, -- v5 uses blink.cmp, not nvim-cmp
       gitsigns = true,
       nvimtree = false, -- Using neo-tree instead

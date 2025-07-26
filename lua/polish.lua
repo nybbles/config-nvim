@@ -15,7 +15,7 @@ require("themester").setup()
 
 -- Setup autocmds for code outline plugins to reduce gutter width
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "aerial", "Outline" },
+  pattern = { "Outline" },
   callback = function()
     vim.opt_local.signcolumn = "no"
     vim.opt_local.foldcolumn = "0"
