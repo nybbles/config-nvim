@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap-python",
-    ft = { "python", "quarto" },
+    ft = { "python" },
     dependencies = {
       "mfussenegger/nvim-dap",
     },
@@ -44,7 +44,7 @@ return {
       
       -- Add keymaps
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = {"python", "quarto"},
+        pattern = {"python"},
         callback = function()
           -- Essential DAP controls
           vim.keymap.set("n", "<leader>dc", function() dap.continue() end, { desc = "Debug: Start/Continue", buffer = true })
@@ -75,30 +75,22 @@ return {
     end,
   },
   {
-    "petobens/poet-v",
-    ft = { "python", "quarto" },
+    "linux-cultist/venv-selector.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+    ft = { "python" },
+    branch = "regexp",
     config = function()
-      -- Auto-activate environments
-      vim.g.poetv_auto_activate = 1
-      -- Show environment name in status line
-      vim.g.poetv_set_environment = 1
-    end
-  },
-  {
-    "wookayin/semshi",
-    ft = { "python", "quarto" },
-    build = ":UpdateRemotePlugins",
-    init = function()
-      -- Better highlighting for Python
-      vim.g.semshi_no_default_rules = false
-      vim.g.semshi_excluded_hl_groups = { 'pythonComment', 'pythonError' }
-      vim.g.semshi_mark_selected_nodes = 1
-      vim.g.semshi_error_sign = false
-      vim.g.semshi_mark_global_variables = 1
-      vim.g.semshi_excluded_filetypes = { 'python_test' }
-      vim.g.semshi_nb_of_cpu_cores = 4
-      vim.g.semshi_no_special_syntax_for_imported_objects = false
-      vim.g.semshi_simplify_markup = false
+      require("venv-selector").setup({
+        settings = {
+          options = {
+            notify_user_on_venv_activation = true,
+          },
+        },
+      })
     end,
+    keys = {
+      { "<leader>vs", "<cmd>VenvSelect<cr>" },
+      { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+    },
   },
 }

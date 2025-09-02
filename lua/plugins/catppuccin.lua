@@ -4,9 +4,15 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = {
-    flavour = "mocha", -- Use mocha flavor (dark) for consistency
+    flavour = "mocha",
     transparent_background = false,
-    term_colors = true,
+    term_colors = false, -- Disabled for performance
+    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+    compile = {
+      enabled = true,
+      path = vim.fn.stdpath("cache") .. "/catppuccin",
+      suffix = "_compiled"
+    },
     dim_inactive = {
       enabled = false,
     },
@@ -27,13 +33,13 @@ return {
     color_overrides = {},
     custom_highlights = {},
     integrations = {
-      aerial = true,
-      cmp = true,
+      cmp = false, -- v5 uses blink.cmp, not nvim-cmp
       gitsigns = true,
-      nvimtree = true,
-      telescope = true,
+      nvimtree = false, -- Using neo-tree instead
+      neotree = true,
+      telescope = false, -- v5 uses snacks.nvim, not telescope
       treesitter = true,
-      notify = true, 
+      notify = true,
       mason = true,
       navic = {
         enabled = true,
@@ -41,20 +47,11 @@ return {
       },
       native_lsp = {
         enabled = true,
-        virtual_text = {
-          errors = { "italic" },
-          hints = { "italic" },
-          warnings = { "italic" },
-          information = { "italic" },
-        },
         underlines = {
-          errors = { "underline" },
-          hints = { "underline" },
-          warnings = { "underline" },
-          information = { "underline" },
-        },
-        inlay_hints = {
-          background = true, 
+          errors = { "undercurl" },
+          hints = { "undercurl" },
+          warnings = { "undercurl" },
+          information = { "undercurl" },
         },
       },
       dap = {
@@ -65,18 +62,23 @@ return {
         enabled = true,
         colored_indent_levels = false,
       },
-      -- Remove navbuddy integration as it's not supported yet
-      -- navbuddy = true,
       illuminate = {
         enabled = true,
         lsp = true,
       },
       which_key = true,
+      lsp_trouble = true,
+      mini = false, -- Disable if not using mini plugins
     },
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
-    -- Set colorscheme after options
-    vim.cmd.colorscheme("catppuccin")
+
+    -- Manual Trouble v3 highlight fixes
+    vim.api.nvim_set_hl(0, "TroubleNormal", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TroubleText", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "TroubleCount", { link = "TabLineSel" })
+    vim.api.nvim_set_hl(0, "TroubleDirectory", { link = "Directory" })
+    vim.api.nvim_set_hl(0, "TroubleFileName", { link = "Directory" })
   end,
 }

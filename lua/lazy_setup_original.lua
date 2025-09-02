@@ -1,20 +1,17 @@
--- AstroNvim v5 configuration
--- Migrated from v4 with performance optimizations
-
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^5",
+    version = "^4", -- Remove version tracking to elect for nighly AstroNvim
     import = "astronvim.plugins",
-    opts = {
-      mapleader = " ",
-      maplocalleader = ",",
-      icons_enabled = true,
-      pin_plugins = nil,
+    opts = { -- AstroNvim options must be set here with the `import` key
+      mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
+      maplocalleader = ",", -- This ensures the localleader key must be configured before Lazy is set up
+      icons_enabled = true, -- Set to false to disable icons (if no Nerd Font is available)
+      pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
       autoread = true,
     },
   },
-  -- Lazy load nvim-navbuddy
+  -- Add SmiteshP/nvim-navbuddy explicitly to ensure it's installed
   { 
     "SmiteshP/nvim-navbuddy",
     dependencies = {
@@ -22,7 +19,7 @@ require("lazy").setup({
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim",
     },
-    lazy = true,
+    lazy = true, -- Lazy load to improve startup
     cmd = "Navbuddy",
     keys = {
       { "<leader>n", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
@@ -30,11 +27,11 @@ require("lazy").setup({
   },
   { import = "community" },
   { import = "plugins" },
-}, {
+} --[[@as LazySpec]], {
+  -- Configure any other `lazy.nvim` configuration options here
   install = { colorscheme = { "astrodark", "habamax" } },
   defaults = {
-    lazy = true, -- Make all plugins lazy by default
-    version = false, -- Disable version constraints for faster loading
+    lazy = false, -- We'll selectively lazy load plugins
   },
   performance = {
     cache = {
@@ -64,7 +61,6 @@ require("lazy").setup({
         "zipPlugin",
         "tutor",
         "rplugin",
-        "syntax",
         "synmenu",
         "optwin",
         "compiler",
@@ -74,5 +70,4 @@ require("lazy").setup({
       },
     },
   },
-  -- v5 uses snacks.nvim and blink.cmp, remove manual plugin specs
-})
+} --[[@as LazyConfig]])

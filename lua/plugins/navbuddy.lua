@@ -24,6 +24,21 @@ return {
         position = "50%",
         scrolloff = 3,
       },
+      node_markers = {
+        enabled = true,
+        icons = {
+          leaf = "  ",
+          leaf_selected = " → ",
+          branch = " ",
+        },
+      },
+      use_default_mappings = true,
+      source_buffer = {
+        follow_node = true,
+        highlight = true,
+        reorient = "smart",
+        scrolloff = nil,
+      },
       lsp = {
         auto_attach = true,
         preference = nil,
@@ -32,7 +47,7 @@ return {
     
     -- Forcibly connect to any active LSP client when opening
     vim.api.nvim_create_user_command("Navbuddy", function()
-      local clients = vim.lsp.get_active_clients({bufnr = 0})
+      local clients = vim.lsp.get_clients({bufnr = 0})
       if #clients == 0 then
         vim.notify("No LSP servers attached to this buffer", vim.log.levels.WARN)
         return

@@ -11,6 +11,10 @@ return {
       return
     end
     
+    -- Get capabilities from cmp-nvim-lsp if available
+    local has_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
+    
     rust_tools.setup({
       tools = {
         inlay_hints = {
@@ -21,9 +25,11 @@ return {
         },
       },
       server = {
+        capabilities = capabilities,
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = {
+              enable = true,
               command = "clippy",
             },
             procMacro = {
@@ -41,14 +47,34 @@ return {
         },
         on_attach = function(_, bufnr)
           -- Set keymap only for Rust files
-          vim.keymap.set("n", "<leader>rr", rust_tools.runnables.runnables, 
-            { desc = "Rust Runnables", buffer = bufnr })
-          vim.keymap.set("n", "<leader>re", rust_tools.expand_macro.expand_macro, 
-            { desc = "Rust Expand Macro", buffer = bufnr })
+          local rt = require("rust-tools")
+          
+          -- Enable format on save
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format({ bufnr = bufnr })
+            end,
+          })
+          
+          -- Only set keymaps if the functions exist
+          if rt.runnables and rt.runnables.runnables then
+            vim.keymap.set("n", "<leader>rr", rt.runnables.runnables, 
+              { desc = "Rust Runnables", buffer = bufnr })
+          end
+          
+          if rt.expand_macro and rt.expand_macro.expand_macro then
+            vim.keymap.set("n", "<leader>re", rt.expand_macro.expand_macro, 
+              { desc = "Rust Expand Macro", buffer = bufnr })
+          end
+          
           vim.keymap.set("n", "<leader>rc", function() vim.cmd("e Cargo.toml") end, 
             { desc = "Open Cargo.toml", buffer = bufnr })
-          vim.keymap.set("n", "<leader>rh", rust_tools.inlay_hints.toggle, 
-            { desc = "Toggle Inlay Hints", buffer = bufnr })
+          
+          if rt.inlay_hints and rt.inlay_hints.toggle then
+            vim.keymap.set("n", "<leader>rh", rt.inlay_hints.toggle, 
+              { desc = "Toggle Inlay Hints", buffer = bufnr })
+          end
         end,
       },
     })

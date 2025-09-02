@@ -5,12 +5,17 @@
 -- Configure autoread for automatically updating buffers when modified externally
 vim.opt.autoread = true
 
+-- Disable inccommand to prevent UI issues during search
+vim.opt.inccommand = ""
+
 -- Ensure Catppuccin is the default colorscheme
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
+
+require("themester").setup()
 
 -- Setup autocmds for code outline plugins to reduce gutter width
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "aerial", "Outline" },
+  pattern = { "Outline" },
   callback = function()
     vim.opt_local.signcolumn = "no"
     vim.opt_local.foldcolumn = "0"
@@ -24,20 +29,16 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   pattern = "*",
   callback = function()
-    if vim.fn.getcmdwintype() == "" then
-      vim.cmd("checktime")
-    end
+    if vim.fn.getcmdwintype() == "" then vim.cmd "checktime" end
   end,
-  desc = "Check for external file changes"
+  desc = "Check for external file changes",
 })
 
 -- Optionally notify on file change
 vim.api.nvim_create_autocmd("FileChangedShellPost", {
   pattern = "*",
-  callback = function()
-    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO)
-  end,
-  desc = "Notify when file is changed externally"
+  callback = function() vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO) end,
+  desc = "Notify when file is changed externally",
 })
 
 -- Set up custom filetypes

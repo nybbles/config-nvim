@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- AstroLSP configuration is now active
 
 -- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
 -- Configuration documentation can be found with `:h astrolsp`
@@ -32,8 +32,9 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
+        "marksman", -- ensure marksman doesn't format
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 3000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -46,6 +47,22 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      marksman = {
+        settings = {
+          marksman = {
+            completion = {
+              wiki = {
+                style = "title"
+              }
+            }
+          }
+        },
+        on_attach = function(client, bufnr)
+          -- Disable Marksman's formatting capability to use prettierd instead
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+      },
       ruff_lsp = {
         init_options = {
           settings = {
@@ -61,19 +78,6 @@ return {
           local navbuddy = require "nvim-navbuddy"
           navbuddy.attach(client, bufnr)
         end,
-      },
-      pyright = {
-        settings = {
-          pyright = {},
-          python = {
-            analysis = {
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = "workspace",
-            },
-          },
-        },
       },
       pylsp = {
         settings = {
@@ -93,6 +97,12 @@ return {
               jedi_symbols = { enabled = true },
               jedi_signature_help = { enabled = true },
               rope_autoimport = {
+                enabled = true,
+              },
+              rope_completion = {
+                enabled = true,
+              },
+              rope_rename = {
                 enabled = true,
               },
               pycodestyle = {
@@ -139,27 +149,27 @@ return {
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
-      lsp_document_highlight = {
-        -- Optional condition to create/delete auto command group
-        -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
-        -- condition will be resolved for each client on each execution and if it ever fails for all clients,
-        -- the auto commands will be deleted for that buffer
-        cond = "textDocument/documentHighlight",
-        -- cond = function(client, bufnr) return client.name == "lua_ls" end,
-        -- list of auto commands to set
-        {
-          -- events to trigger
-          event = { "CursorHold", "CursorHoldI" },
-          -- the rest of the autocmd options (:h nvim_create_autocmd)
-          desc = "Document Highlighting",
-          callback = function() vim.lsp.buf.document_highlight() end,
-        },
-        {
-          event = { "CursorMoved", "CursorMovedI", "BufLeave" },
-          desc = "Document Highlighting Clear",
-          callback = function() vim.lsp.buf.clear_references() end,
-        },
-      },
+      -- lsp_document_highlight = {
+      --   -- Optional condition to create/delete auto command group
+      --   -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
+      --   -- condition will be resolved for each client on each execution and if it ever fails for all clients,
+      --   -- the auto commands will be deleted for that buffer
+      --   cond = "textDocument/documentHighlight",
+      --   -- cond = function(client, bufnr) return client.name == "lua_ls" end,
+      --   -- list of auto commands to set
+      --   {
+      --     -- events to trigger
+      --     event = { "CursorHold", "CursorHoldI" },
+      --     -- the rest of the autocmd options (:h nvim_create_autocmd)
+      --     desc = "Document Highlighting",
+      --     callback = function() vim.lsp.buf.document_highlight() end,
+      --   },
+      --   {
+      --     event = { "CursorMoved", "CursorMovedI", "BufLeave" },
+      --     desc = "Document Highlighting Clear",
+      --     callback = function() vim.lsp.buf.clear_references() end,
+      --   },
+      -- },
     },
     -- mappings to be set up on attaching of a language server
     mappings = {

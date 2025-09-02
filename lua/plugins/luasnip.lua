@@ -1,5 +1,10 @@
+-- DISABLED for AstroNvim v5: Let v5 handle snippet configuration
+if true then return {} end -- DISABLE: Let v5 handle LuaSnip config
+
 return {
   "L3MON4D3/LuaSnip",
+  lazy = true,
+  event = "InsertEnter", -- Load only when entering insert mode
   config = function(plugin, opts)
     require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
     -- add more custom luasnip configuration such as filetype extend or custom snippets
