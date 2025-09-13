@@ -15,7 +15,7 @@ require("lazy").setup({
     },
   },
   -- Lazy load nvim-navbuddy
-  { 
+  {
     "SmiteshP/nvim-navbuddy",
     dependencies = {
       "neovim/nvim-lspconfig",
