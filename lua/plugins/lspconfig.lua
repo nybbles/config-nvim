@@ -27,13 +27,12 @@ return {
     local has_mason_lsp, mason_lspconfig = pcall(require, "mason-lspconfig")
     if has_mason_lsp then
       mason_lspconfig.setup {
-        ensure_installed = {
-          -- Only install Node.js based tools via Mason on NixOS
-          -- Binary tools should be installed via Nix
-          "pyright", -- Python (Node.js based)
-          "bashls", -- Bash (Node.js based)
-        },
-        automatic_installation = false, -- Disable auto-install on NixOS
+        -- IMPORTANT: ensure_installed MUST be empty on NixOS
+        -- Mason installs dynamically linked binaries that cannot run on NixOS
+        -- due to missing standard library paths (/lib, /usr/lib)
+        -- All LSP servers are instead installed via Home Manager as Nix packages
+        ensure_installed = {},
+        automatic_installation = false, -- Disable auto-install completely
       }
     end
 
