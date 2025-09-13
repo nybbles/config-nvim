@@ -28,13 +28,12 @@ return {
     if has_mason_lsp then
       mason_lspconfig.setup {
         ensure_installed = {
-          "pyright", -- Python
-          "ruff", -- Python linting
-          "rust_analyzer", -- Rust
-          "lua_ls", -- Lua
-          "bashls", -- Bash
+          -- Only install Node.js based tools via Mason on NixOS
+          -- Binary tools should be installed via Nix
+          "pyright", -- Python (Node.js based)
+          "bashls", -- Bash (Node.js based)
         },
-        automatic_installation = true,
+        automatic_installation = false, -- Disable auto-install on NixOS
       }
     end
 
@@ -59,12 +58,12 @@ return {
       },
     }
 
-    -- Additional Python linting with ruff
+    -- Additional Python linting with ruff (Home Manager)
     lspconfig.ruff.setup {
       capabilities = capabilities,
     }
 
-    -- Lua configuration
+    -- Lua configuration (Home Manager)
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -86,7 +85,7 @@ return {
       },
     }
 
-    -- Rust configuration with better parameter hints
+    -- Rust configuration (Home Manager)
     lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
       settings = {
@@ -109,7 +108,7 @@ return {
       },
     }
 
-    -- Bash
+    -- Bash (Home Manager)
     lspconfig.bashls.setup {
       capabilities = capabilities,
     }
