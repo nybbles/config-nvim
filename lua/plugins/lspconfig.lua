@@ -27,12 +27,14 @@ return {
     local has_mason_lsp, mason_lspconfig = pcall(require, "mason-lspconfig")
     if has_mason_lsp then
       mason_lspconfig.setup {
-        -- IMPORTANT: ensure_installed MUST be empty on NixOS
-        -- Mason installs dynamically linked binaries that cannot run on NixOS
-        -- due to missing standard library paths (/lib, /usr/lib)
-        -- All LSP servers are instead installed via Home Manager as Nix packages
-        ensure_installed = {},
-        automatic_installation = false, -- Disable auto-install completely
+        ensure_installed = {
+          "pyright", -- Python
+          "ruff", -- Python linting
+          "rust_analyzer", -- Rust
+          "lua_ls", -- Lua
+          "bashls", -- Bash
+        },
+        automatic_installation = true,
       }
     end
 
@@ -57,12 +59,12 @@ return {
       },
     }
 
-    -- Additional Python linting with ruff (Home Manager)
+    -- Additional Python linting with ruff
     lspconfig.ruff.setup {
       capabilities = capabilities,
     }
 
-    -- Lua configuration (Home Manager)
+    -- Lua configuration
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       settings = {
@@ -84,7 +86,7 @@ return {
       },
     }
 
-    -- Rust configuration (Home Manager)
+    -- Rust configuration with better parameter hints
     lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
       settings = {
@@ -107,7 +109,7 @@ return {
       },
     }
 
-    -- Bash (Home Manager)
+    -- Bash
     lspconfig.bashls.setup {
       capabilities = capabilities,
     }

@@ -1,4 +1,4 @@
-if true then return {} end -- DISABLED: All LSP servers managed via Home Manager on NixOS
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 -- Customize Mason plugins
 
 ---@type LazySpec
