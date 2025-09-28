@@ -37,6 +37,7 @@ return {
       null_ls.builtins.completion.luasnip,
       null_ls.builtins.code_actions.refactoring,
     }
+    
     return config -- return final config table
   end,
 }
