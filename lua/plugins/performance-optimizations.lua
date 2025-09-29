@@ -79,14 +79,7 @@ return {
     },
   },
 
-  -- 4. Lazy load language-specific plugins
-  {
-    "pwntester/octo.nvim",
-    lazy = true,
-    cmd = "Octo",
-  },
-
-  -- 5. Lazy load development tools
+  -- 4. Lazy load development tools
   {
     "danymat/neogen",
     lazy = true,
