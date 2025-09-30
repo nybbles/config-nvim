@@ -17,18 +17,20 @@ return {
     },
     "folke/which-key.nvim",
   },
-  cmd = {
-    "GHOpenPR",
-    "GHOpenIssue", 
-    "GHSearchPRs",
-    "GHSearchIssues",
-    "GHStartReview",
-    "GHSubmitReview",
-    "GHDeleteReview",
-    "GHApproveReview",
-    "GHRequestedReview",
-    "GHReviewed",
-    "GHNotifications",
+  lazy = false, -- Load immediately so commands are available
+  keys = {
+    { "<leader>gp", "<cmd>GHOpenPR<cr>", desc = "Open Pull Request" },
+    { "<leader>gi", "<cmd>GHOpenIssue<cr>", desc = "Open Issue" },
+    { "<leader>gs", "<cmd>GHSearchPRs<cr>", desc = "Search Pull Requests" },
+    { "<leader>gS", "<cmd>GHSearchIssues<cr>", desc = "Search Issues" },
+    { "<leader>gr", "<cmd>GHStartReview<cr>", desc = "Start Review" },
+    { "<leader>gR", "<cmd>GHSubmitReview<cr>", desc = "Submit Review" },
+    { "<leader>ga", "<cmd>GHApproveReview<cr>", desc = "Approve Review" },
+    { "<leader>gd", "<cmd>GHDeleteReview<cr>", desc = "Delete/Cancel Review" },
+    { "<leader>gn", "<cmd>GHNotifications<cr>", desc = "GitHub Notifications" },
+    { "<leader>gt", "<cmd>LTPanel<cr>", desc = "Toggle Litee Panel" },
+    { "<leader>gl", "<cmd>GHRequestedReview<cr>", desc = "PRs Requesting Review" },
+    { "<leader>gL", "<cmd>GHReviewed<cr>", desc = "Recently Reviewed PRs" },
   },
   config = function()
     require("litee.gh").setup({
@@ -50,31 +52,10 @@ return {
       }
     })
 
-    -- Set up which-key integration for gh.nvim
+    -- Set up which-key group (keymaps are defined in the keys table above)
     local wk = require("which-key")
-    
     wk.add({
       { "<leader>g", group = "GitHub (gh.nvim)" },
-      
-      -- Pull Requests
-      { "<leader>gp", "<cmd>GHOpenPR<cr>", desc = "Open Pull Request" },
-      { "<leader>gs", "<cmd>GHSearchPRs<cr>", desc = "Search Pull Requests" },
-      { "<leader>gl", "<cmd>GHRequestedReview<cr>", desc = "PRs Requesting Review" },
-      { "<leader>gL", "<cmd>GHReviewed<cr>", desc = "Recently Reviewed PRs" },
-      
-      -- Issues  
-      { "<leader>gi", "<cmd>GHOpenIssue<cr>", desc = "Open Issue" },
-      { "<leader>gS", "<cmd>GHSearchIssues<cr>", desc = "Search Issues" },
-      
-      -- Reviews
-      { "<leader>gr", "<cmd>GHStartReview<cr>", desc = "Start Review" },
-      { "<leader>gR", "<cmd>GHSubmitReview<cr>", desc = "Submit Review" },
-      { "<leader>ga", "<cmd>GHApproveReview<cr>", desc = "Approve Review" },
-      { "<leader>gd", "<cmd>GHDeleteReview<cr>", desc = "Delete/Cancel Review" },
-      
-      -- Notifications & UI
-      { "<leader>gn", "<cmd>GHNotifications<cr>", desc = "GitHub Notifications" },
-      { "<leader>gt", "<cmd>LTPanel<cr>", desc = "Toggle Litee Panel" },
     })
 
     -- Add completion for GitHub usernames and issues
