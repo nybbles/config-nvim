@@ -113,8 +113,6 @@ return {
 
             gL = { "<cmd>GithubLink<cr>", desc = "Copy Github link to clipboard" },
 
-            -- Octo.nvim GitHub integration - single entry point
-            ["<Leader>O"] = { "<cmd>Octo<cr>", desc = "Open Octo command palette" },
 
             ["<Leader>x"] = { name = "Trouble" },
             ["<Leader>xx"] = { "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
