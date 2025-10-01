@@ -19,18 +19,60 @@ return {
   },
   lazy = false, -- Load immediately so commands are available
   keys = {
-    { "<leader>gp", "<cmd>GHOpenPR<cr>", desc = "Open Pull Request" },
-    { "<leader>gi", "<cmd>GHOpenIssue<cr>", desc = "Open Issue" },
-    { "<leader>gs", "<cmd>GHSearchPRs<cr>", desc = "Search Pull Requests" },
-    { "<leader>gS", "<cmd>GHSearchIssues<cr>", desc = "Search Issues" },
-    { "<leader>gr", "<cmd>GHStartReview<cr>", desc = "Start Review" },
-    { "<leader>gR", "<cmd>GHSubmitReview<cr>", desc = "Submit Review" },
-    { "<leader>ga", "<cmd>GHApproveReview<cr>", desc = "Approve Review" },
-    { "<leader>gd", "<cmd>GHDeleteReview<cr>", desc = "Delete/Cancel Review" },
-    { "<leader>gn", "<cmd>GHNotifications<cr>", desc = "GitHub Notifications" },
-    { "<leader>gt", "<cmd>LTPanel<cr>", desc = "Toggle Litee Panel" },
-    { "<leader>gl", "<cmd>GHRequestedReview<cr>", desc = "PRs Requesting Review" },
-    { "<leader>gL", "<cmd>GHReviewed<cr>", desc = "Recently Reviewed PRs" },
+    -- Following gh.nvim's recommended structure
+    { "<leader>g", group = "Git" },
+    { "<leader>gh", group = "GitHub" },
+    
+    -- Commits
+    { "<leader>ghc", group = "Commits" },
+    { "<leader>ghcc", "<cmd>GHCloseCommit<cr>", desc = "Close" },
+    { "<leader>ghce", "<cmd>GHExpandCommit<cr>", desc = "Expand" },
+    { "<leader>ghco", "<cmd>GHOpenToCommit<cr>", desc = "Open To" },
+    { "<leader>ghcp", "<cmd>GHPopOutCommit<cr>", desc = "Pop Out" },
+    { "<leader>ghcz", "<cmd>GHCollapseCommit<cr>", desc = "Collapse" },
+    
+    -- Issues
+    { "<leader>ghi", group = "Issues" },
+    { "<leader>ghio", "<cmd>GHOpenIssue<cr>", desc = "Open" },
+    { "<leader>ghip", "<cmd>GHPreviewIssue<cr>", desc = "Preview" },
+    { "<leader>ghis", "<cmd>GHSearchIssues<cr>", desc = "Search" },
+    
+    -- Litee Panel
+    { "<leader>ghl", group = "Litee" },
+    { "<leader>ghlt", "<cmd>LTPanel<cr>", desc = "Toggle Panel" },
+    
+    -- Pull Requests
+    { "<leader>ghp", group = "Pull Requests" },
+    { "<leader>ghpc", "<cmd>GHClosePR<cr>", desc = "Close" },
+    { "<leader>ghpd", "<cmd>GHPRDetails<cr>", desc = "Details" },
+    { "<leader>ghpe", "<cmd>GHExpandPR<cr>", desc = "Expand" },
+    { "<leader>ghpo", "<cmd>GHOpenPR<cr>", desc = "Open" },
+    { "<leader>ghpp", "<cmd>GHPopOutPR<cr>", desc = "PopOut" },
+    { "<leader>ghpr", "<cmd>GHRefreshPR<cr>", desc = "Refresh" },
+    { "<leader>ghps", "<cmd>GHSearchPRs<cr>", desc = "Search" },
+    { "<leader>ghpt", "<cmd>GHOpenToPR<cr>", desc = "Open To" },
+    { "<leader>ghpz", "<cmd>GHCollapsePR<cr>", desc = "Collapse" },
+    
+    -- Reviews
+    { "<leader>ghr", group = "Reviews" },
+    { "<leader>ghra", "<cmd>GHApproveReview<cr>", desc = "Approve" },
+    { "<leader>ghrb", "<cmd>GHStartReview<cr>", desc = "Begin" },
+    { "<leader>ghrc", "<cmd>GHCloseReview<cr>", desc = "Close" },
+    { "<leader>ghrd", "<cmd>GHDeleteReview<cr>", desc = "Delete" },
+    { "<leader>ghre", "<cmd>GHExpandReview<cr>", desc = "Expand" },
+    { "<leader>ghrs", "<cmd>GHSubmitReview<cr>", desc = "Submit" },
+    { "<leader>ghrz", "<cmd>GHCollapseReview<cr>", desc = "Collapse" },
+    
+    -- Threads
+    { "<leader>ght", group = "Threads" },
+    { "<leader>ghtc", "<cmd>GHCreateThread<cr>", desc = "Create" },
+    { "<leader>ghtn", "<cmd>GHNextThread<cr>", desc = "Next" },
+    { "<leader>ghtt", "<cmd>GHToggleThread<cr>", desc = "Toggle" },
+    
+    -- Additional GitHub features
+    { "<leader>ghn", "<cmd>GHNotifications<cr>", desc = "Notifications" },
+    { "<leader>ghL", "<cmd>GHRequestedReview<cr>", desc = "PRs requesting review" },
+    { "<leader>ghR", "<cmd>GHReviewed<cr>", desc = "Recently reviewed PRs" },
   },
   config = function()
     require("litee.gh").setup({
@@ -52,11 +94,7 @@ return {
       }
     })
 
-    -- Set up which-key group (keymaps are defined in the keys table above)
-    local wk = require("which-key")
-    wk.add({
-      { "<leader>g", group = "GitHub (gh.nvim)" },
-    })
+    -- Which-key groups are now defined in the keys table above
 
     -- Add completion for GitHub usernames and issues
     vim.api.nvim_create_autocmd("FileType", {

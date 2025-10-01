@@ -60,6 +60,13 @@ return {
               desc = "Lazygit terminal",
             },
 
+            -- Git operations (complementing GitHub functionality)
+            ["<Leader>gs"] = { "<cmd>Telescope git_status<cr>", desc = "Git status" },
+            ["<Leader>gb"] = { "<cmd>Telescope git_branches<cr>", desc = "Git branches" },
+            ["<Leader>gd"] = { "<cmd>Telescope git_bcommits<cr>", desc = "Git diff (buffer commits)" },
+            ["<Leader>gD"] = { "<cmd>Telescope git_commits<cr>", desc = "Git commits (all)" },
+            ["<Leader>gf"] = { "<cmd>Telescope git_files<cr>", desc = "Git files" },
+
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
             ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
             
