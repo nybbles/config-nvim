@@ -6,7 +6,7 @@ return {
       config = function()
         require("litee.lib").setup({
           tree = {
-            icon_set = "codicons"
+            icon_set = "simple"
           },
           panel = {
             orientation = "right",
