@@ -112,7 +112,6 @@ return {
         vim.keymap.set("n", "<M-CR>", "<Plug>(neorg.esupports.hop.hop-link.vsplit)", opts)
         
         -- Lists and todos
-        vim.keymap.set("i", "<C-l>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", opts)
         vim.keymap.set("n", "<C-Space>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", opts)
         
         -- Text objects
