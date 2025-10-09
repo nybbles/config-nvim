@@ -56,51 +56,36 @@ return {
   config = function(_, opts)
     require("neorg").setup(opts)
 
-    -- Set up which-key mappings for Neorg
+    -- Set up which-key mappings for Neorg (modern spec)
     local wk = require("which-key")
     
-    wk.register({
-      n = {
-        name = "Neorg",
-        w = {
-          name = "Workspace",
-          w = { "<cmd>Neorg workspace notes<cr>", "Notes workspace" },
-        },
-        i = { "<cmd>Neorg index<cr>", "Open workspace index" },
-        r = { "<cmd>Neorg return<cr>", "Return to previous buffer" },
-        j = {
-          name = "Journal",
-          j = { "<cmd>Neorg journal today<cr>", "Today's journal" },
-          y = { "<cmd>Neorg journal yesterday<cr>", "Yesterday's journal" },
-          t = { "<cmd>Neorg journal tomorrow<cr>", "Tomorrow's journal" },
-          c = { "<cmd>Neorg journal custom<cr>", "Custom date journal" },
-        },
-        d = {
-          name = "Dirman", 
-          d = { "<cmd>Neorg keybind norg core.dirman.new.note<cr>", "New note" },
-        },
-        t = {
-          name = "Tasks",
-          -- Note: Use <C-Space> in normal mode to cycle through task states
-          -- Manual task editing is recommended for reliability
-        },
-        e = {
-          name = "Export",
-          m = { "<cmd>Neorg export to-file markdown<cr>", "Export to markdown" },
-          d = { "<cmd>Neorg export directory markdown<cr>", "Export directory to markdown" },
-        },
-        s = {
-          name = "Search", 
-          f = { "<cmd>Telescope neorg find_norg_files<cr>", "Find norg files" },
-          h = { "<cmd>Telescope neorg search_headings<cr>", "Search headings" },
-          l = { "<cmd>Telescope neorg find_linkable<cr>", "Find linkable" },
-          b = { "<cmd>Telescope neorg find_backlinks<cr>", "Find backlinks" },
-        },
-        c = { "<cmd>Neorg toggle-concealer<cr>", "Toggle concealer" },
-        m = { "<cmd>Neorg inject-metadata<cr>", "Inject metadata" },
-        u = { "<cmd>Neorg update-metadata<cr>", "Update metadata" },
-      },
-    }, { prefix = "<leader>" })
+    wk.add({
+      { "<leader>n", group = "Neorg" },
+      { "<leader>nw", group = "Workspace" },
+      { "<leader>nww", "<cmd>Neorg workspace notes<cr>", desc = "Notes workspace" },
+      { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Open workspace index" },
+      { "<leader>nr", "<cmd>Neorg return<cr>", desc = "Return to previous buffer" },
+      { "<leader>nj", group = "Journal" },
+      { "<leader>njj", "<cmd>Neorg journal today<cr>", desc = "Today's journal" },
+      { "<leader>njy", "<cmd>Neorg journal yesterday<cr>", desc = "Yesterday's journal" },
+      { "<leader>njt", "<cmd>Neorg journal tomorrow<cr>", desc = "Tomorrow's journal" },
+      { "<leader>njc", "<cmd>Neorg journal custom<cr>", desc = "Custom date journal" },
+      { "<leader>nd", group = "Dirman" },
+      { "<leader>ndd", "<cmd>Neorg keybind norg core.dirman.new.note<cr>", desc = "New note" },
+      { "<leader>nt", group = "Tasks" },
+      -- Note: Use <C-Space> in normal mode to cycle through task states
+      { "<leader>ne", group = "Export" },
+      { "<leader>nem", "<cmd>Neorg export to-file markdown<cr>", desc = "Export to markdown" },
+      { "<leader>ned", "<cmd>Neorg export directory markdown<cr>", desc = "Export directory to markdown" },
+      { "<leader>ns", group = "Search" },
+      { "<leader>nsf", "<cmd>Telescope neorg find_norg_files<cr>", desc = "Find norg files" },
+      { "<leader>nsh", "<cmd>Telescope neorg search_headings<cr>", desc = "Search headings" },
+      { "<leader>nsl", "<cmd>Telescope neorg find_linkable<cr>", desc = "Find linkable" },
+      { "<leader>nsb", "<cmd>Telescope neorg find_backlinks<cr>", desc = "Find backlinks" },
+      { "<leader>nc", "<cmd>Neorg toggle-concealer<cr>", desc = "Toggle concealer" },
+      { "<leader>nm", "<cmd>Neorg inject-metadata<cr>", desc = "Inject metadata" },
+      { "<leader>nu", "<cmd>Neorg update-metadata<cr>", desc = "Update metadata" },
+    })
 
     -- Set up autocmds for better Neorg experience
     vim.api.nvim_create_autocmd("FileType", {
