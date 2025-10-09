@@ -81,13 +81,8 @@ return {
         },
         t = {
           name = "Tasks",
-          u = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_undone() end, "Mark undone" },
-          p = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_pending() end, "Mark pending" },
-          d = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_done() end, "Mark done" },
-          h = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_on_hold() end, "Mark on hold" },
-          c = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_cancelled() end, "Mark cancelled" },
-          r = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_recurring() end, "Mark recurring" },
-          i = { function() require("neorg").modules.get_module("core.qol.todo_items").public.task_important() end, "Mark important" },
+          -- Note: Use <C-Space> in normal mode to cycle through task states
+          -- Manual task editing is recommended for reliability
         },
         e = {
           name = "Export",
