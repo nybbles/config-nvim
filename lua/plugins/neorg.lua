@@ -37,7 +37,7 @@ return {
           journal_folder = "journal",
           use_template = false,
           template_name = "",
-          strategy = "flat", -- Use flat structure instead of nested folders
+          strategy = "nested", -- Use nested year/month/day structure
         },
       },
       ["core.export"] = {},
