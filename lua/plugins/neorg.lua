@@ -34,6 +34,10 @@ return {
       ["core.journal"] = {
         config = {
           workspace = "notes",
+          journal_folder = "journal",
+          use_template = false,
+          template_name = "",
+          strategy = "flat", -- Use flat structure instead of nested folders
         },
       },
       ["core.export"] = {},
