@@ -10,8 +10,7 @@ return {
         mappings = {
           -- first key is the mode
           n = {
-            -- Disable the default <leader>n mapping that creates a new file
-            ["<Leader>n"] = false,
+            -- <Leader>n is now used by neorg plugin
             
             -- second key is the lefthand side of the map
             -- mappings seen under group name "Buffer"
@@ -26,18 +25,18 @@ return {
             },
             -- tables with the `name` key will be registered with which-key if it's installed
             -- this is useful for naming menus
-            ["<Leader>b"] = { name = "Buffers" },
+            ["<Leader>b"] = { desc = "Buffers" },
             -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
             -- quick save
 
-            ["<Leader>w"] = { name = "Windows" },
+            ["<Leader>w"] = { desc = "Windows" },
             ["<Leader>wz"] = { "<cmd>WindowsMaximize<cr>", desc = "Maximize windows" },
             ["<Leader>w_"] = { "<cmd>WindowsMaximizeVertically<cr>", desc = "Maximize windows vertically" },
             ["<Leader>w|"] = { "<cmd>WindowsMaximizeHorizontally<cr>", desc = "Maximize windows horizonally" },
             ["<Leader>w="] = { "<cmd>WindowsEqualize<cr>", desc = "Equalize windows" },
             
 
-            ["<Leader>t"] = { name = "Terminals" },
+            ["<Leader>t"] = { desc = "Terminals" },
             ["<Leader>ts"] = {
               function() require("custom.terminal-picker").terminal_picker() end,
               desc = "Search/select terminal",
@@ -79,7 +78,7 @@ return {
             ["<Leader>lc"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code actions" },
 
             -- File operations
-            ["<Leader>f"] = { name = "Find" },
+            ["<Leader>f"] = { desc = "Find" },
             ["<Leader>fb"] = { 
               function()
                 local path = nil
@@ -121,7 +120,13 @@ return {
             gL = { "<cmd>GithubLink<cr>", desc = "Copy Github link to clipboard" },
 
 
-            ["<Leader>x"] = { name = "Trouble" },
+            -- Harpoon (quick file switching for active work)
+            ["<Leader>h"] = { desc = "Harpoon" },
+
+            -- Sessions (workspace persistence)
+            ["<Leader>S"] = { desc = "Sessions" },
+
+            ["<Leader>x"] = { desc = "Trouble" },
             ["<Leader>xx"] = { "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
             ["<Leader>xX"] = {
               "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
@@ -137,7 +142,7 @@ return {
           },
           v = {
             -- Visual mode LSP mappings
-            ["<Leader>l"] = { name = "LSP" },
+            ["<Leader>l"] = { desc = "LSP" },
             ["<Leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
             ["<Leader>lf"] = { "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format selection" },
           },
