@@ -37,7 +37,10 @@ return {
           journal_folder = "journal",
           use_template = false,
           template_name = "",
-          strategy = "nested", -- Use nested year/month/day structure
+          strategy = "nested", -- Use nested year/month/day structure  
+          template = {
+            file_name = "%Y-%m-%d", -- Full date in filename: 2025-10-09
+          },
         },
       },
       ["core.export"] = {},
