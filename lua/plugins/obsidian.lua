@@ -4,12 +4,9 @@ return {
   lazy = true,
   cmd = { "ObsidianWorkspace", "ObsidianNew" },
   event = {
-    -- Load for any markdown file in Documents folder
-    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/**.md",
-    "BufNewFile " .. vim.fn.expand "~" .. "/Documents/**.md",
-    -- Load for any markdown file in themester notes
-    "BufReadPre " .. vim.fn.expand "~" .. "/code/themester/notes/**.md",
-    "BufNewFile " .. vim.fn.expand "~" .. "/code/themester/notes/**.md",
+    -- Load for any markdown file in Twelvelabs vault
+    "BufReadPre " .. vim.fn.expand "~" .. "/Documents/Twelvelabs/**.md",
+    "BufNewFile " .. vim.fn.expand "~" .. "/Documents/Twelvelabs/**.md",
   },
   dependencies = {
     -- Required.
@@ -21,8 +18,8 @@ return {
     local workspaces = ok and vaults or {
       -- Fallback vault if config file doesn't exist
       {
-        name = "notes",
-        path = "~/Documents/notes",
+        name = "Twelvelabs",
+        path = "~/Documents/Twelvelabs",
       },
     }
     
@@ -67,13 +64,18 @@ return {
         time_format = "%H:%M",
       },
       
-      -- Configure daily notes
+      -- Configure daily notes to match existing Periodic notes structure
       daily_notes = {
-        -- Optional, if you keep daily notes in a separate directory.
-        folder = "Daily notes",
-        -- Optional, if you want to change the date format for the ID of daily notes.
-        -- Include the folder structure in the date format
-        date_format = "%Y/%m/%d/%Y-%m-%d",
+        -- Use the existing Periodic notes directory with weekly folders
+        folder = "Periodic notes",
+        -- Use weekly folder structure: 2025/W41/2025-10-09.md
+        date_format = function(date)
+          local year = os.date("%Y", date)
+          local week = os.date("%W", date)
+          -- Pad week number to ensure proper sorting (W01, W02, etc.)
+          week = string.format("W%02d", tonumber(week))
+          return string.format("%s/%s/%s", year, week, os.date("%Y-%m-%d", date))
+        end,
         -- Optional, if you want to change the date format of the default alias of daily notes.
         alias_format = "%B %-d, %Y",
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
