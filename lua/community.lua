@@ -7,8 +7,20 @@
 ---@type LazySpec
 return {
   { "AstroNvim/astrocommunity" },
-  -- Reduced community imports for faster startup
+  -- Language packs with enhanced snippets
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.go" },
+  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.terraform" },
+  { import = "astrocommunity.pack.helm" },
+  
+  -- Enhanced editing support
+  { import = "astrocommunity.editing-support.nvim-devdocs" },
+  
   -- Disabled for performance - can be re-enabled as needed:
   -- { import = "astrocommunity.pack.markdown" },
   -- { import = "astrocommunity.split-and-window.windows-nvim" },
