@@ -71,7 +71,7 @@ return {
       { "<leader>njt", "<cmd>Neorg journal tomorrow<cr>", desc = "Tomorrow's journal" },
       { "<leader>njc", "<cmd>Neorg journal custom<cr>", desc = "Custom date journal" },
       { "<leader>nd", group = "Dirman" },
-      { "<leader>ndd", "<cmd>Neorg keybind norg core.dirman.new.note<cr>", desc = "New note" },
+      { "<leader>ndd", "<cmd>Neorg dirman new note<cr>", desc = "New note" },
       { "<leader>nt", group = "Tasks" },
       -- Note: Use <C-Space> in normal mode to cycle through task states
       { "<leader>ne", group = "Export" },
