@@ -1,4 +1,4 @@
-if true then return {} end -- Deactivate file to avoid theme conflicts
+-- if true then return {} end -- Deactivate file to avoid theme conflicts
 
 -- AstroUI provides the basis for configuring the AstroNvim User Interface
 -- Configuration documentation can be found with `:h astroui`
