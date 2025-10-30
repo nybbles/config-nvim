@@ -25,6 +25,8 @@ return {
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
           "markdown", -- explicitly enable for markdown
+          "nix", -- enable format on save for Nix files
+          "terraform", -- enable format on save for Terraform files
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
