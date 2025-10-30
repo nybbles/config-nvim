@@ -22,6 +22,8 @@ return {
       --   extra_args = { "--black", "--filter-files" },
       -- },
       null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.alejandra, -- Nix formatter
+      null_ls.builtins.formatting.terraform_fmt, -- Terraform formatter
       null_ls.builtins.formatting.prettierd.with({
         filetypes = { "markdown" },
         extra_args = { 
