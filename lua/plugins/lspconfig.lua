@@ -28,7 +28,7 @@ return {
     if has_mason_lsp then
       mason_lspconfig.setup {
         ensure_installed = {
-          "pyright", -- Python
+          "basedpyright", -- Python
           "ruff", -- Python linting
           "rust_analyzer", -- Rust
           "lua_ls", -- Lua
@@ -45,13 +45,12 @@ return {
       or vim.lsp.protocol.make_client_capabilities()
 
     -- Python configuration
-    lspconfig.pyright.setup {
+    lspconfig.basedpyright.setup {
       capabilities = capabilities,
       settings = {
         python = {
           analysis = {
-            autoSearchPaths = true,
-            diagnosticMode = "workspace",
+            diagnosticMode = "openFilesOnly",
             useLibraryCodeForTypes = true,
             typeCheckingMode = "basic",
           },
