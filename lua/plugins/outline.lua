@@ -137,6 +137,18 @@ return {
   config = function(_, opts)
     require("outline").setup(opts)
     
+    -- Auto-refresh outline when Terraform files are saved
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      pattern = "*.tf",
+      callback = function()
+        if require("outline").is_open() then
+          vim.defer_fn(function()
+            require("outline").refresh()
+          end, 100) -- Small delay to ensure LSP has processed changes
+        end
+      end,
+    })
+    
     -- Theme-agnostic highlights using semantic groups
     vim.cmd([[
       " Use existing highlight groups that work with any theme
