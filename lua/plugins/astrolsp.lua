@@ -128,17 +128,6 @@ return {
           },
         },
       },
-      ["rust-analyzer"] = {
-        procMacro = {
-          ignored = {
-            leptos_macro = {
-              -- optional: --
-              -- "component",
-              "server",
-            },
-          },
-        },
-      },
     },
     -- customize how language servers are attached
     handlers = {
@@ -146,7 +135,7 @@ return {
       -- function(server, opts) require("lspconfig")[server].setup(opts) end
 
       -- the key is the server that is being setup with `lspconfig`
-      -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
+      rust_analyzer = false, -- setting a handler to false will disable the set up of that language server (using rustaceanvim instead)
       pyright = false, -- explicitly disable pyright in favor of basedpyright
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
     },

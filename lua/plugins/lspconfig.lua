@@ -30,7 +30,6 @@ return {
         ensure_installed = {
           "basedpyright", -- Python
           "ruff", -- Python linting
-          "rust_analyzer", -- Rust
           "lua_ls", -- Lua
           "bashls", -- Bash
         },
@@ -85,28 +84,6 @@ return {
       },
     }
 
-    -- Rust configuration with better parameter hints
-    lspconfig.rust_analyzer.setup {
-      capabilities = capabilities,
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            allFeatures = true,
-          },
-          procMacro = {
-            enable = true,
-          },
-          checkOnSave = {
-            command = "clippy",
-          },
-          inlayHints = {
-            chainingHints = true,
-            parameterHints = true,
-            typeHints = true,
-          },
-        },
-      },
-    }
 
     -- Bash
     lspconfig.bashls.setup {

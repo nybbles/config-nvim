@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
   desc = "Notify when file is changed externally",
 })
 
+
 -- Set up custom filetypes
 vim.filetype.add {
   extension = {
