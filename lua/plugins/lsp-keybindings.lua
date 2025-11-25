@@ -4,7 +4,11 @@ return {
     local maps = opts.mappings or {}
     
     -- Standardized LSP keybindings for all languages
-    maps.n = vim.tbl_deep_extend("force", maps.n or {}, {
+    maps.n = vim.tbl_deep_extend("keep", maps.n or {}, {
+      -- Which-key group definitions
+      ["<leader>l"] = { desc = "󰒋 LSP" },
+      ["<leader>lw"] = { desc = " Workspace" },
+      
       -- Core LSP actions (consistent across all languages)
       ["<leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code Actions" },
       ["<leader>lf"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format Document" },
@@ -21,12 +25,11 @@ return {
       
       -- Diagnostics (consistent across all languages)
       ["<leader>le"] = { function() vim.diagnostic.open_float() end, desc = "Show Diagnostics" },
-      ["<leader>ln"] = { function() vim.diagnostic.goto_next() end, desc = "Next Diagnostic" },
+      ["<leader>lj"] = { function() vim.diagnostic.goto_next() end, desc = "Next Diagnostic" },
       ["<leader>lp"] = { function() vim.diagnostic.goto_prev() end, desc = "Previous Diagnostic" },
       ["<leader>lq"] = { function() vim.diagnostic.setloclist() end, desc = "Diagnostic Quickfix" },
       
       -- Workspace (consistent across all languages)
-      ["<leader>lw"] = { desc = " Workspace" },
       ["<leader>lwa"] = { function() vim.lsp.buf.add_workspace_folder() end, desc = "Add Workspace Folder" },
       ["<leader>lwr"] = { function() vim.lsp.buf.remove_workspace_folder() end, desc = "Remove Workspace Folder" },
       ["<leader>lwl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, desc = "List Workspace Folders" },
@@ -51,7 +54,7 @@ return {
     })
     
     -- Visual mode code actions
-    maps.v = vim.tbl_deep_extend("force", maps.v or {}, {
+    maps.v = vim.tbl_deep_extend("keep", maps.v or {}, {
       ["<leader>la"] = { function() vim.lsp.buf.code_action() end, desc = "Code Actions (Range)" },
       ["<leader>lf"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format Selection" },
     })

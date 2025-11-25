@@ -164,7 +164,25 @@ return {
           json = {
             validate = { enable = true },
             format = { enable = true },
-            schemas = require('schemastore').json.schemas(),
+            -- Use conditional schemastore loading for AstroNvim compatibility
+            schemas = (function()
+              local ok, schemastore = pcall(require, 'schemastore')
+              if ok then
+                return schemastore.json.schemas()
+              else
+                -- Fallback to basic schemas if schemastore not available
+                return {
+                  {
+                    fileMatch = { "package.json" },
+                    url = "https://json.schemastore.org/package.json"
+                  },
+                  {
+                    fileMatch = { "tsconfig*.json" },
+                    url = "https://json.schemastore.org/tsconfig.json"
+                  },
+                }
+              end
+            end)(),
           },
         },
       },
