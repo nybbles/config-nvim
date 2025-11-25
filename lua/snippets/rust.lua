@@ -8,6 +8,425 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 return {
+  -- Basic control flow snippets
+  s("if", fmt([[
+    if {condition} {{
+        {body}
+    }}
+  ]], {
+    condition = i(1, "true"),
+    body = i(0, "// TODO")
+  })),
+
+  s("ife", fmt([[
+    if {condition} {{
+        {if_body}
+    }} else {{
+        {else_body}
+    }}
+  ]], {
+    condition = i(1, "true"),
+    if_body = i(2, "// TODO"),
+    else_body = i(0, "// TODO")
+  })),
+
+  s("ifel", fmt([[
+    if {condition1} {{
+        {if_body}
+    }} else if {condition2} {{
+        {elif_body}
+    }} else {{
+        {else_body}
+    }}
+  ]], {
+    condition1 = i(1, "true"),
+    if_body = i(2, "// TODO"),
+    condition2 = i(3, "false"),
+    elif_body = i(4, "// TODO"),
+    else_body = i(0, "// TODO")
+  })),
+
+  s("for", fmt([[
+    for {item} in {iterator} {{
+        {body}
+    }}
+  ]], {
+    item = i(1, "item"),
+    iterator = i(2, "items"),
+    body = i(0, "// TODO")
+  })),
+
+  s("fori", fmt([[
+    for {var} in {start}..{end} {{
+        {body}
+    }}
+  ]], {
+    var = i(1, "i"),
+    start = i(2, "0"),
+    ["end"] = i(3, "10"),
+    body = i(0, "// TODO")
+  })),
+
+  s("while", fmt([[
+    while {condition} {{
+        {body}
+    }}
+  ]], {
+    condition = i(1, "true"),
+    body = i(0, "// TODO")
+  })),
+
+  s("loop", fmt([[
+    loop {{
+        {body}
+    }}
+  ]], {
+    body = i(0, "// TODO")
+  })),
+
+  s("fn", fmt([[
+    fn {name}({params}) {return_type}{{
+        {body}
+    }}
+  ]], {
+    name = i(1, "function_name"),
+    params = i(2),
+    return_type = c(3, {t(""), fmt("-> {}", {i(1, "Type")})}),
+    body = i(0, "// TODO")
+  })),
+
+  s("let", fmt([[
+    let {name} = {value};
+  ]], {
+    name = i(1, "var"),
+    value = i(0, "value")
+  })),
+
+  s("letm", fmt([[
+    let mut {name} = {value};
+  ]], {
+    name = i(1, "var"),
+    value = i(0, "value")
+  })),
+
+  s("main", fmt([[
+    fn main() {{
+        {body}
+    }}
+  ]], {
+    body = i(0, 'println!("Hello, world!");')
+  })),
+
+  s("println", fmt([[
+    println!("{message}"{args});
+  ]], {
+    message = i(1, "{}"),
+    args = i(0)
+  })),
+
+  s("print", fmt([[
+    print!("{message}"{args});
+  ]], {
+    message = i(1, "{}"),
+    args = i(0)
+  })),
+
+  s("eprintln", fmt([[
+    eprintln!("{message}"{args});
+  ]], {
+    message = i(1, "{}"),
+    args = i(0)
+  })),
+
+  s("dbg", fmt([[
+    dbg!({expr});
+  ]], {
+    expr = i(0, "value")
+  })),
+
+  s("vec", fmt([[
+    vec![{items}]
+  ]], {
+    items = i(0, "1, 2, 3")
+  })),
+
+  s("derive", fmt([[
+    #[derive({traits})]
+  ]], {
+    traits = i(0, "Debug, Clone")
+  })),
+
+  s("cfg", fmt([[
+    #[cfg({condition})]
+  ]], {
+    condition = i(0, "test")
+  })),
+
+  s("allow", fmt([[
+    #[allow({lint})]
+  ]], {
+    lint = i(0, "dead_code")
+  })),
+
+  -- Advanced error handling snippets
+  s("unwrap_or", fmt([[
+    {expr}.unwrap_or({default})
+  ]], {
+    expr = i(1, "option"),
+    default = i(0, "default")
+  })),
+
+  s("unwrap_or_else", fmt([[
+    {expr}.unwrap_or_else(|| {fallback})
+  ]], {
+    expr = i(1, "option"),
+    fallback = i(0, "panic!(\"Failed\")")
+  })),
+
+  s("map_or", fmt([[
+    {expr}.map_or({default}, |{var}| {body})
+  ]], {
+    expr = i(1, "option"),
+    default = i(2, "default"),
+    var = i(3, "x"),
+    body = i(0, "x")
+  })),
+
+  s("and_then", fmt([[
+    {expr}.and_then(|{var}| {body})
+  ]], {
+    expr = i(1, "option"),
+    var = i(2, "x"),
+    body = i(0, "Some(x)")
+  })),
+
+  s("ok_or", fmt([[
+    {expr}.ok_or({error})
+  ]], {
+    expr = i(1, "option"),
+    error = i(0, "\"Error message\"")
+  })),
+
+  s("expect", fmt([[
+    {expr}.expect("{message}")
+  ]], {
+    expr = i(1, "result"),
+    message = i(0, "Expected valid value")
+  })),
+
+  -- Common iterator patterns
+  s("collect", fmt([[
+    {iterator}.collect::<{type}>()
+  ]], {
+    iterator = i(1, "iter"),
+    ["type"] = i(0, "Vec<_>")
+  })),
+
+  s("filter_map", fmt([[
+    {iterator}.filter_map(|{var}| {body}).collect()
+  ]], {
+    iterator = i(1, "iter"),
+    var = i(2, "x"),
+    body = i(0, "Some(x)")
+  })),
+
+  s("fold", fmt([[
+    {iterator}.fold({init}, |{acc}, {item}| {body})
+  ]], {
+    iterator = i(1, "iter"),
+    init = i(2, "0"),
+    acc = i(3, "acc"),
+    item = i(4, "item"),
+    body = i(0, "acc + item")
+  })),
+
+  s("reduce", fmt([[
+    {iterator}.reduce(|{acc}, {item}| {body})
+  ]], {
+    iterator = i(1, "iter"),
+    acc = i(2, "acc"),
+    item = i(3, "item"),
+    body = i(0, "acc + item")
+  })),
+
+  -- String manipulation
+  s("format", fmt([[
+    format!("{fmt}"{args})
+  ]], {
+    fmt = i(1, "{}"),
+    args = i(0, ", value")
+  })),
+
+  s("toString", fmt([[
+    {expr}.to_string()
+  ]], {
+    expr = i(0, "value")
+  })),
+
+  s("into", fmt([[
+    {expr}.into()
+  ]], {
+    expr = i(0, "value")
+  })),
+
+  -- Option and Result constructors
+  s("Some", fmt([[
+    Some({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  s("None", "None"),
+
+  s("Ok", fmt([[
+    Ok({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  s("Err", fmt([[
+    Err({error})
+  ]], {
+    error = i(0, "error")
+  })),
+
+  -- Module structure
+  s("mod", fmt([[
+    mod {name} {{
+        {body}
+    }}
+  ]], {
+    name = i(1, "module"),
+    body = i(0, "// Module content")
+  })),
+
+  s("use", fmt([[
+    use {path};
+  ]], {
+    path = i(0, "std::collections::HashMap")
+  })),
+
+  s("pub", fmt([[
+    pub {item}
+  ]], {
+    item = i(0, "fn function() {}")
+  })),
+
+  -- Conditional compilation
+  s("cfg_test", fmt([[
+    #[cfg(test)]
+    mod tests {{
+        use super::*;
+        
+        {body}
+    }}
+  ]], {
+    body = i(0, "#[test]\nfn test_function() {\n    assert_eq!(1, 1);\n}")
+  })),
+
+  s("cfg_debug", fmt([[
+    #[cfg(debug_assertions)]
+    {body}
+  ]], {
+    body = i(0, "println!(\"Debug mode\");")
+  })),
+
+  -- Lifetime annotations
+  s("lifetime", fmt([[
+    {item}<'{lifetime}>
+  ]], {
+    item = i(1, "struct MyStruct"),
+    lifetime = i(0, "a")
+  })),
+
+  -- Generic constraints
+  s("where", fmt([[
+    where
+        {constraint}
+  ]], {
+    constraint = i(0, "T: Clone + Debug")
+  })),
+
+  -- Async patterns
+  s("await", fmt([[
+    {expr}.await
+  ]], {
+    expr = i(0, "async_function()")
+  })),
+
+  s("spawn", fmt([[
+    tokio::spawn(async move {{
+        {body}
+    }})
+  ]], {
+    body = i(0, "// Async task")
+  })),
+
+  -- Smart pointers
+  s("box", fmt([[
+    Box::new({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  s("rc", fmt([[
+    Rc::new({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  s("arc", fmt([[
+    Arc::new({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  s("refcell", fmt([[
+    RefCell::new({value})
+  ]], {
+    value = i(0, "value")
+  })),
+
+  -- Common derives
+  s("derive_debug", "#[derive(Debug)]"),
+  s("derive_clone", "#[derive(Debug, Clone)]"),
+  s("derive_eq", "#[derive(Debug, Clone, PartialEq, Eq)]"),
+  s("derive_ord", "#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]"),
+  s("derive_hash", "#[derive(Debug, Clone, PartialEq, Eq, Hash)]"),
+  s("derive_default", "#[derive(Debug, Clone, Default)]"),
+  s("derive_serde", "#[derive(Debug, Clone, Serialize, Deserialize)]"),
+
+  -- Quick test snippets
+  s("assert_eq", fmt([[
+    assert_eq!({left}, {right});
+  ]], {
+    left = i(1, "actual"),
+    right = i(0, "expected")
+  })),
+
+  s("assert_ne", fmt([[
+    assert_ne!({left}, {right});
+  ]], {
+    left = i(1, "actual"),
+    right = i(0, "unexpected")
+  })),
+
+  s("assert", fmt([[
+    assert!({condition});
+  ]], {
+    condition = i(0, "true")
+  })),
+
+  -- Panic and todo
+  s("panic", fmt([[
+    panic!("{message}");
+  ]], {
+    message = i(0, "Not implemented")
+  })),
+
+  s("todo", "todo!()"),
+  s("unreachable", "unreachable!()"),
+  s("unimplemented", "unimplemented!()"),
   -- Struct with derives
   s("struct", fmt([[
     #[derive({derives})]
