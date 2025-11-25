@@ -20,3 +20,7 @@ require "polish"
 
 vim.cmd "set autoread"
 vim.cmd "au CursorHold * checktime"
+
+-- Enable loading of local .nvim.lua files for project-specific configurations
+vim.opt.exrc = true
+vim.opt.secure = true -- For security, prevents malicious local configs from running dangerous commands
