@@ -67,15 +67,13 @@ return {
             ["<Leader>gf"] = { "<cmd>Telescope git_files<cr>", desc = "Find git tracked files" },
 
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
-            ["<Leader>lw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
+            ["<Leader>lws"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
             
-            -- LSP References and Refactoring
+            -- Enhanced navigation with Telescope
             ["gr"] = { "<cmd>Telescope lsp_references<cr>", desc = "References" },
             ["gd"] = { "<cmd>Telescope lsp_definitions<cr>", desc = "Go to definition" },
             ["gi"] = { "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementation" },
             ["gt"] = { "<cmd>Telescope lsp_type_definitions<cr>", desc = "Go to type definition" },
-            ["<Leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename symbol" },
-            ["<Leader>lc"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code actions" },
 
             -- File operations
             ["<Leader>f"] = { desc = "Find" },
@@ -141,10 +139,7 @@ return {
             ["<Leader>xQ"] = { "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix list" },
           },
           v = {
-            -- Visual mode LSP mappings
-            ["<Leader>l"] = { desc = "LSP" },
-            ["<Leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
-            ["<Leader>lf"] = { "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format selection" },
+            -- Visual mode mappings now handled by lsp-keybindings.lua
           },
           t = {
             -- setting a mapping to false will disable it

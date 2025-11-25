@@ -69,13 +69,20 @@ return {
       ruff_lsp = {
         init_options = {
           settings = {
-            args = {},
+            args = {
+              "--select=ALL",
+              "--ignore=E501,W505,D100,D101,D102,D103,D104,D105,D107",
+            },
           },
         },
         on_attach = function(client, bufnr)
           if client.name == "ruff_lsp" then
             -- Disable hover in favor of pylsp
             client.server_capabilities.hoverProvider = false
+            -- Enable code actions and formatting
+            client.server_capabilities.codeActionProvider = true
+            client.server_capabilities.documentFormattingProvider = true
+            client.server_capabilities.documentRangeFormattingProvider = true
           end
 
           local navbuddy = require "nvim-navbuddy"
@@ -108,6 +115,10 @@ return {
               rope_rename = {
                 enabled = true,
               },
+              -- Enhanced code actions
+              rope_refactor = {
+                enabled = true,
+              },
               pycodestyle = {
                 enabled = false,
               },
@@ -124,6 +135,45 @@ return {
                 formatEnabled = true,
                 targetVersion = "py311",
               },
+            },
+          },
+        },
+      },
+      -- Enhanced file format support
+      yamlls = {
+        settings = {
+          yaml = {
+            validate = true,
+            hover = true,
+            completion = true,
+            format = {
+              enable = true,
+            },
+            schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+              ["https://json.schemastore.org/github-action.json"] = "/action.{yml,yaml}",
+              ["https://json.schemastore.org/docker-compose.json"] = "docker-compose*.{yml,yaml}",
+              ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
+              ["https://json.schemastore.org/chart.json"] = "Chart.{yml,yaml}",
+            },
+          },
+        },
+      },
+      jsonls = {
+        settings = {
+          json = {
+            validate = { enable = true },
+            format = { enable = true },
+            schemas = require('schemastore').json.schemas(),
+          },
+        },
+      },
+      taplo = {
+        -- Enhanced TOML support (especially for Cargo.toml)
+        settings = {
+          taplo = {
+            configFile = {
+              enabled = true,
             },
           },
         },

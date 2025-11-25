@@ -6,9 +6,12 @@ return {
   enabled = true,
   config = function()
     -- rustaceanvim is configured via vim.g.rustaceanvim
-    -- Get capabilities from cmp-nvim-lsp if available
-    local has_cmp_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    local capabilities = has_cmp_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
+    -- Get capabilities from blink.cmp if available
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local has_blink, blink = pcall(require, "blink.cmp")
+    if has_blink then
+      capabilities = blink.get_lsp_capabilities(capabilities)
+    end
     
     vim.g.rustaceanvim = {
       -- Plugin configuration
@@ -43,8 +46,8 @@ return {
         capabilities = capabilities,
         settings = {
           ["rust-analyzer"] = {
-            checkOnSave = true,
-            check = {
+            checkOnSave = {
+              enable = true,
               command = "clippy",
               allFeatures = true,
             },
@@ -57,6 +60,13 @@ return {
               buildScripts = {
                 enable = true,
               },
+            },
+            -- Enhanced assists for code actions
+            assist = {
+              importGranularity = "module",
+              importEnforceGranularity = true,
+              importPrefix = "self",
+              expressionFillDefault = "default",
             },
             -- Enhanced diagnostics and compiler help
             diagnostics = {
@@ -98,6 +108,13 @@ return {
               privateEditable = {
                 enable = true,
               },
+              callable = {
+                snippets = "add_parentheses",
+              },
+            },
+            -- Enhanced code actions and refactoring
+            experimental = {
+              procAttrMacros = true,
             },
             imports = {
               granularity = {
