@@ -65,6 +65,10 @@ return {
             ["<Leader>gd"] = { "<cmd>Telescope git_bcommits<cr>", desc = "Git commits (current buffer)" },
             ["<Leader>gD"] = { "<cmd>Telescope git_commits<cr>", desc = "Git commits (repository)" },
             ["<Leader>gf"] = { "<cmd>Telescope git_files<cr>", desc = "Find git tracked files" },
+            ["<Leader>gl"] = { 
+              function() require("custom.copy-location").copy_file_location() end, 
+              desc = "Copy file location to clipboard" 
+            },
 
             ["<Leader>ln"] = { "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
             ["<Leader>lws"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols" },
