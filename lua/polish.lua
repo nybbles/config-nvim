@@ -46,11 +46,17 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 vim.filetype.add {
   extension = {
     foo = "fooscript",
+    tpl = "gotmpl", -- All .tpl files use Go template syntax
   },
   filename = {
     ["Foofile"] = "fooscript",
   },
   pattern = {
     ["~/%.config/foo/.*"] = "fooscript",
+    [".*/templates/.*%.tpl"] = "gotmpl", -- Template files in templates directory
+    [".*/templates/.*%.yaml"] = "gotmpl", -- YAML files with Go templates in templates directory
+    [".*/templates/.*%.yml"] = "gotmpl", -- YML files with Go templates in templates directory
+    [".*%.yaml%.tpl"] = "gotmpl", -- Files ending in .yaml.tpl
+    [".*%.yml%.tpl"] = "gotmpl", -- Files ending in .yml.tpl
   },
 }

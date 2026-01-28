@@ -32,6 +32,8 @@ return {
           "ruff", -- Python linting
           "lua_ls", -- Lua
           "bashls", -- Bash
+          "yamlls", -- YAML/Helm templates
+          "gopls", -- Go templates
         },
         automatic_installation = true,
       }
@@ -88,6 +90,44 @@ return {
     -- Bash
     lspconfig.bashls.setup {
       capabilities = capabilities,
+    }
+
+    -- YAML/Helm templates
+    lspconfig.yamlls.setup {
+      capabilities = capabilities,
+      settings = {
+        yaml = {
+          schemas = {
+            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
+            ["https://json.schemastore.org/chart.json"] = "Chart.{yml,yaml}",
+            kubernetes = {
+              "*.yaml",
+              "*.yml",
+            },
+          },
+          customTags = {
+            "!reference sequence",
+            "!encrypted/pkcs1-oaep sequence",
+            "!vault scalar",
+          },
+        },
+      },
+    }
+
+    -- Go templates (for Helm .tpl files)
+    lspconfig.gopls.setup {
+      capabilities = capabilities,
+      filetypes = { "go", "gomod", "gowork", "gotmpl" },
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+          gofumpt = true,
+        },
+      },
     }
 
     -- Global LSP keymaps

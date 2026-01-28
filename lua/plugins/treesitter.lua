@@ -13,7 +13,11 @@ return {
       "julia",
       "r",
       "yaml",
+      "json",
       "lua",
+      "go",
+      "gomod",
+      "gotmpl", -- Go template syntax for Helm .tpl files
     })
     
     -- Add error handling to prevent TreeSitter crashes
