@@ -167,11 +167,13 @@ return {
             -- Use conditional schemastore loading for AstroNvim compatibility
             schemas = (function()
               local ok, schemastore = pcall(require, 'schemastore')
+              local base_schemas = {}
+              
               if ok then
-                return schemastore.json.schemas()
+                base_schemas = schemastore.json.schemas()
               else
                 -- Fallback to basic schemas if schemastore not available
-                return {
+                base_schemas = {
                   {
                     fileMatch = { "package.json" },
                     url = "https://json.schemastore.org/package.json"
@@ -182,9 +184,30 @@ return {
                   },
                 }
               end
+              
+              -- Add OpenAPI schema support
+              vim.list_extend(base_schemas, {
+                {
+                  fileMatch = { "*openapi*.json", "*swagger*.json", "api-spec.json" },
+                  url = "https://spec.openapis.org/oas/v3.1/schema/2022-10-07"
+                },
+                {
+                  fileMatch = { "openapi.json" },
+                  url = "https://spec.openapis.org/oas/v3.1/schema/2022-10-07"
+                }
+              })
+              
+              return base_schemas
             end)(),
           },
         },
+        on_attach = function(client, bufnr)
+          -- Attach navbuddy to jsonls for better navigation
+          local has_navbuddy, navbuddy = pcall(require, "nvim-navbuddy")
+          if has_navbuddy then
+            navbuddy.attach(client, bufnr)
+          end
+        end,
       },
       taplo = {
         -- Enhanced TOML support (especially for Cargo.toml)
