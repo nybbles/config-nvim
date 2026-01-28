@@ -15,19 +15,27 @@ return {
 
     opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, {
       ["<Tab>"] = {
-        "select_next",
-        "snippet_forward",
         function(cmp)
           local luasnip = require("luasnip")
+          -- If completion menu is visible, select next
+          if cmp.is_visible() then
+            return cmp.select_next()
+          end
+          -- If in snippet and can jump, do so
+          if luasnip.locally_jumpable(1) then
+            return luasnip.jump(1)
+          end
           -- Handle hidden/expandable snippets
-          if not cmp.is_visible() and not luasnip.locally_jumpable(1) and luasnip.expandable() then
+          if luasnip.expandable() then
             return luasnip.expand()
           end
-          if has_words_before() or vim.api.nvim_get_mode().mode == "c" then 
+          -- If we have words before cursor in command mode, show completion
+          if vim.api.nvim_get_mode().mode == "c" and has_words_before() then 
             return cmp.show() 
           end
+          -- For normal indentation, fallback to default Tab behavior
+          return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", false)
         end,
-        "fallback",
       },
       ["<S-Tab>"] = {
         "select_prev",
