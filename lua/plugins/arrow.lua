@@ -12,7 +12,7 @@ return {
       separate_by_branch = true,
       hide_handbook = false,
       save_path = function()
-        return vim.fn.stdpath("cache") .. "/arrow"
+        return vim.fn.stdpath("data") .. "/arrow"
       end,
       mappings = {
         edit = "e",
