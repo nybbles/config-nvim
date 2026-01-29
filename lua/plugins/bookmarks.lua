@@ -8,6 +8,23 @@ return {
       "nvim-telescope/telescope.nvim",
       "kkharji/sqlite.lua",
     },
+    -- Patch storage.lua to fix sqlite schema mismatch bug (upstream issue #12)
+    -- The plugin defines 6 columns but migrations add 2 more (branch, list),
+    -- causing sqlite.lua's ensure check to fail
+    build = function()
+      local path = vim.fn.stdpath("data") .. "/lazy/bookmarks.nvim/lua/bookmarks/storage.lua"
+      local ok, lines = pcall(vim.fn.readfile, path)
+      if not ok then return end
+      local content = table.concat(lines, "\n")
+      -- Check if already patched
+      if content:find('branch%s+= "text"') then return end
+      -- Add branch and list columns to the schema definition
+      content = content:gsub(
+        '(project_root%s+= "text",)(\n\n%s+%-%- "ensure=true")',
+        '%1\n                branch       = "text",    -- Git branch (for branch-specific bookmarks)\n                list         = "text",    -- Bookmark list name\n%2'
+      )
+      vim.fn.writefile(vim.split(content, "\n"), path)
+    end,
     config = function()
       require("bookmarks").setup({
         db_path = vim.fn.stdpath("data") .. "/bookmarks.db",
