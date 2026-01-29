@@ -44,7 +44,7 @@ return {
       {
         "<Leader>ma",
         function()
-          require("bookmarks").add_bookmark()
+          require("bookmarks.commands").add_bookmark()
         end,
         desc = "Add bookmark",
       },
@@ -52,7 +52,7 @@ return {
       {
         "<Leader>md",
         function()
-          require("bookmarks").remove_bookmark()
+          require("bookmarks.commands").remove_bookmark()
         end,
         desc = "Delete bookmark",
       },
