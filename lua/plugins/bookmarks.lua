@@ -26,8 +26,18 @@ return {
       vim.fn.writefile(vim.split(content, "\n"), path)
     end,
     config = function()
+      -- Use per-project database to avoid conflicts between Neovim instances
+      local function get_project_db_path()
+        local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
+        if git_root and git_root ~= "" and not git_root:match("^fatal:") then
+          return git_root .. "/.bookmarks.db"
+        end
+        -- Fallback to cwd for non-git directories
+        return vim.fn.getcwd() .. "/.bookmarks.db"
+      end
+
       require("bookmarks").setup({
-        db_path = vim.fn.stdpath("data") .. "/bookmarks.db",
+        db_path = get_project_db_path(),
         use_branch_specific = true,
         default_mappings = false,
       })
