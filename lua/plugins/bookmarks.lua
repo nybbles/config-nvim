@@ -66,14 +66,18 @@ return {
       {
         "<Leader>mn",
         function()
-          require("bookmarks.navigation").jump_to_next()
+          local autocmds = require("bookmarks.autocmds")
+          local bookmarks = autocmds.get_buffer_bookmarks(vim.api.nvim_get_current_buf())
+          require("bookmarks.navigation").jump_to_next(bookmarks)
         end,
         desc = "Next bookmark",
       },
       {
         "<Leader>mp",
         function()
-          require("bookmarks.navigation").jump_to_prev()
+          local autocmds = require("bookmarks.autocmds")
+          local bookmarks = autocmds.get_buffer_bookmarks(vim.api.nvim_get_current_buf())
+          require("bookmarks.navigation").jump_to_prev(bookmarks)
         end,
         desc = "Previous bookmark",
       },
@@ -104,14 +108,18 @@ return {
       {
         "]m",
         function()
-          require("bookmarks.navigation").jump_to_next()
+          local autocmds = require("bookmarks.autocmds")
+          local bookmarks = autocmds.get_buffer_bookmarks(vim.api.nvim_get_current_buf())
+          require("bookmarks.navigation").jump_to_next(bookmarks)
         end,
         desc = "Next bookmark",
       },
       {
         "[m",
         function()
-          require("bookmarks.navigation").jump_to_prev()
+          local autocmds = require("bookmarks.autocmds")
+          local bookmarks = autocmds.get_buffer_bookmarks(vim.api.nvim_get_current_buf())
+          require("bookmarks.navigation").jump_to_prev(bookmarks)
         end,
         desc = "Previous bookmark",
       },
