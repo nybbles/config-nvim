@@ -121,10 +121,6 @@ return {
 
             gL = { "<cmd>GithubLink<cr>", desc = "Copy Github link to clipboard" },
 
-
-            -- Harpoon (quick file switching for active work)
-            ["<Leader>h"] = { desc = "Harpoon" },
-
             -- Sessions (workspace persistence)
             ["<Leader>S"] = { desc = "Sessions" },
 
