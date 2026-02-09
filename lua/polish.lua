@@ -8,10 +8,9 @@ vim.opt.autoread = true
 -- Disable inccommand to prevent UI issues during search
 vim.opt.inccommand = ""
 
--- Ensure Catppuccin is the default colorscheme
--- vim.cmd.colorscheme("catppuccin")
-
-require("themester").setup()
+-- Colorscheme is managed by wallust
+-- Wallust generates ~/.config/nvim/colors/wallust.lua from template
+-- Theme changes automatically sync when running switch-theme
 
 -- Setup autocmds for code outline plugins to reduce gutter width
 vim.api.nvim_create_autocmd("FileType", {
