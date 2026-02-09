@@ -15,7 +15,12 @@ return {
     highlights = {
       -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
       init = { -- this table overrides highlights in all themes
-        -- Normal = { bg = "#000000" },
+        -- Dashboard highlights (force wallust colors to persist)
+        SnacksDashboardHeader = { link = "@string" },
+        SnacksDashboardFooter = { link = "@string" },
+        SnacksDashboardKey = { link = "@keyword" },
+        SnacksDashboardDesc = { link = "Normal" },
+        SnacksDashboardIcon = { link = "@function" },
       },
       astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
