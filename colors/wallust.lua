@@ -15,28 +15,28 @@ vim.g.colors_name = "wallust"
 -- Colors from wallust
 local c = {
   none = "NONE",
-  bg = "#2E3440",
-  fg = "#D8DEE9",
-  cursor = "#D8DEE9",
+  bg = "#FAF4ED",
+  fg = "#575279",
+  cursor = "#575279",
 
   -- ANSI colors
-  black = "#3B4252",
-  red = "#BF616A",
-  green = "#A3BE8C",
-  yellow = "#EBCB8B",
-  blue = "#81A1C1",
-  magenta = "#B48EAD",
-  cyan = "#88C0D0",
-  white = "#E5E9F0",
+  black = "#F2E9E1",
+  red = "#B4637A",
+  green = "#56949F",
+  yellow = "#EA9D34",
+  blue = "#286983",
+  magenta = "#907AA9",
+  cyan = "#D7827E",
+  white = "#575279",
 
-  bright_black = "#4C566A",
-  bright_red = "#BF616A",
-  bright_green = "#A3BE8C",
-  bright_yellow = "#EBCB8B",
-  bright_blue = "#81A1C1",
-  bright_magenta = "#B48EAD",
-  bright_cyan = "#8FBCBB",
-  bright_white = "#ECEFF4",
+  bright_black = "#9893A5",
+  bright_red = "#B4637A",
+  bright_green = "#56949F",
+  bright_yellow = "#EA9D34",
+  bright_blue = "#286983",
+  bright_magenta = "#907AA9",
+  bright_cyan = "#D7827E",
+  bright_white = "#575279",
 }
 
 -- Helper to lighten/darken colors (simple implementation)
