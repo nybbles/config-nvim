@@ -280,6 +280,21 @@ local highlights = {
   GitSignsAdd = { fg = ui.diff_add },
   GitSignsChange = { fg = ui.diff_change },
   GitSignsDelete = { fg = ui.diff_delete },
+
+  -- Dashboard (Snacks.nvim)
+  SnacksDashboardHeader = { fg = c.cyan },
+  SnacksDashboardFooter = { fg = c.cyan },
+  SnacksDashboardSpecial = { fg = c.cyan },
+  SnacksDashboardKey = { fg = c.yellow },
+  SnacksDashboardDesc = { fg = c.fg },
+  SnacksDashboardIcon = { fg = c.blue },
+  SnacksDashboardTitle = { fg = c.magenta, bold = true },
+
+  -- Alpha.nvim (alternative dashboard)
+  AlphaHeader = { fg = c.cyan },
+  AlphaButtons = { fg = c.blue },
+  AlphaShortcut = { fg = c.yellow },
+  AlphaFooter = { fg = c.cyan, italic = true },
 }
 
 -- Apply all highlights
